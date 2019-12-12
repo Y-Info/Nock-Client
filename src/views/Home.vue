@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="flex justify-between align-center">
-      <img src="../assets/logo.png" alt="Nock logo">
+      <img src="../assets/icons/logo.svg" alt="Nock logo">
       <router-link to="/">
-        <img src="../assets/icons/profile-icon.png" alt="Profile icon">
+        <img src="../assets/icons/profile-icon.svg" alt="Profile icon">
       </router-link>
     </div>
     <div class="lala">lalalala</div>

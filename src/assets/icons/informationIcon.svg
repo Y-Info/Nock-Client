@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+  <g id="Layer_2" data-name="Layer 2" transform="translate(0.421 0.421)" opacity="0.997">
+    <g id="file-text" transform="translate(-0.421 -0.421)">
+      <rect id="Rectangle_1460" data-name="Rectangle 1460" width="22" height="22" fill="#fff" opacity="0"/>
+      <path id="Tracé_644" data-name="Tracé 644" d="M17.748,6.655,13.87,2.288A.873.873,0,0,0,13.223,2H6.236A2.21,2.21,0,0,0,4,4.184v13.1a2.21,2.21,0,0,0,2.236,2.184h9.5a2.21,2.21,0,0,0,2.236-2.184V7.241a.873.873,0,0,0-.227-.585ZM8.367,10.734h2.62a.873.873,0,1,1,0,1.747H8.367a.873.873,0,0,1,0-1.747Zm5.241,5.241H8.367a.873.873,0,1,1,0-1.747h5.241a.873.873,0,1,1,0,1.747Zm-.253-8.734a.69.69,0,0,1-.62-.742V3.747L16,7.241Z" transform="translate(-0.089 0.164)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
