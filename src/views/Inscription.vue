@@ -1,7 +1,16 @@
 <template>
   <div>
-    <menu-connect route="/validate-adress" />
+    <menu-connect route="/connect" />
+
+    <h2>Création du compte</h2>
+
     <form id="connect" @submit="checkForm" action="/" method="post">
+      <div class="field-wrap">
+        <label for="name"
+          ><img src="../assets/icons/connectPeople.svg" alt="icon people"
+        /></label>
+        <input class="name" type="text" name="name" id="name" v-model="name" />
+      </div>
       <div class="field-wrap">
         <label for="email"
           ><img src="../assets/icons/mailIcon.svg" alt="icon mail"
@@ -12,9 +21,9 @@
           name="email"
           id="email"
           v-model="email"
+          min="0"
         />
       </div>
-
       <div class="field-wrap">
         <label for="password"
           ><img src="../assets/icons/lock-icon.svg" alt="icon mail"
@@ -28,15 +37,24 @@
           min="0"
         />
       </div>
-      <router-link class="mdp" to="/">Mot de passe oublié ?</router-link>
+      <div class="field-wrap">
+        <label for="confirmPassword"
+          ><img src="../assets/icons/lock-icon.svg" alt="icon mail"
+        /></label>
+        <input
+          class="password"
+          type="password"
+          name="password"
+          id="confirmPassword"
+          v-model="password"
+          min="0"
+        />
+      </div>
     </form>
 
     <div class="button-container">
       <router-link class="buttonClick buttonBefore" to="/validate-adress"
-        >Continuer</router-link
-      >
-      <router-link class="buttonClick buttonAfter" to="/inscription"
-        >S'inscrire</router-link
+        >Confirmation</router-link
       >
     </div>
   </div>
@@ -44,6 +62,7 @@
 
 <script>
 import menuConnect from "../components/menuConnect";
+
 export default {
   components: {
     menuConnect
@@ -52,10 +71,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h2 {
+  margin-top: 70px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #ffba00;
+  margin-left: 20px;
+}
 .button-container {
-  font-family: Montserrat B, sans-serif;
+  font-weight: bold;
   text-align: center;
-  margin-top: 140px;
+  margin-top: 70px;
   font-size: 10px;
   text-transform: uppercase;
 
@@ -75,15 +101,10 @@ export default {
     background-color: #2e3460;
     color: white;
   }
-
-  .buttonAfter {
-    background-color: white;
-    color: #2e3460;
-  }
 }
 
 form {
-  margin-top: 125px;
+  margin-top: 30px;
   display: block;
   position: relative;
 
@@ -96,6 +117,7 @@ form {
     color: #ffba00;
     font-family: Montserrat B, sans-serif;
   }
+
   .field-wrap {
     position: relative;
     margin-bottom: 40px;
