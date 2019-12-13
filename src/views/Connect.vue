@@ -32,12 +32,8 @@
     </form>
 
     <div class="button-container">
-      <router-link class="buttonClick buttonBefore" to="/validate-adress"
-        >Continuer</router-link
-      >
-      <router-link class="buttonClick buttonAfter" to="/inscription"
-        >S'inscrire</router-link
-      >
+      <router-link class="buttonClick buttonBefore" to="/validate-adress">Continuer</router-link>
+      <router-link class="buttonClick buttonAfter" to="/inscription">S'inscrire</router-link>
     </div>
   </div>
 </template>

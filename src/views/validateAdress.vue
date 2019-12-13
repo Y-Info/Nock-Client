@@ -9,8 +9,12 @@
             </div>
             <img src="../assets/img/imgAdress.svg" alt="Visuel adresse">
         </div>
-        <router-link to="/maps">Retour</router-link>
-        <router-link to="/connect">Confirmer</router-link>
+        <p class="margin">S'agit-il bien de votre adresse ?</p>
+
+        <div class="button-container">
+            <router-link class="buttonClick buttonAfter" to="/inscription">Retour</router-link>
+            <router-link class="buttonClick buttonBefore" to="/validate-adress">Confirmer</router-link>
+        </div>
     </div>
 </template>
 
@@ -30,9 +34,70 @@
         color: #2E3460;
         text-transform: uppercase;
     }
-    .resultAdress{
+
+    .resultAdress {
         background-color: #FFFFFF;
         padding: 10px;
-        
+        margin: 60px 20px 20px 20px;
+        border-radius: 5px;
+
+        -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+
+        .adress {
+            display: inline-block;
+            vertical-align: top;
+            width: 70%;
+            margin: 10px;
+
+            h3 {
+                font-size: 12px;
+                margin-top: 0;
+            }
+            p{
+                font-size: 10px;
+            }
+        }
+        img{
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 10px;
+            width: 50px;
+            height: 50px;
+        }
+    }
+    .margin{
+        margin: 20px;
+        font-size: 12px;
+    }
+    .button-container {
+        font-family: Montserrat B, sans-serif;
+        text-align: center;
+        margin-top: 140px;
+        font-size: 10px;
+        text-transform: uppercase;
+        font-weight: 800;
+
+        .buttonClick {
+            margin: 20px 10px 10px 10px;
+            padding: 18px 40px;
+            border-radius: 5px;
+            text-decoration: none;
+
+            -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+        }
+
+        .buttonBefore {
+            background-color: #2e3460;
+            color: white;
+        }
+
+        .buttonAfter {
+            background-color: white;
+            color: #2e3460;
+        }
     }
 </style>
