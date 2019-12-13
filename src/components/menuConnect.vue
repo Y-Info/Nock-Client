@@ -1,7 +1,7 @@
 <template>
     <div>
         <img class="arrow" src="../assets/icons/arrow.svg" alt="flèche retour">
-        <img class="logo" src="../assets/logo.png" alt="Nock logo">
+        <img class="logo" src="../assets/icons/logo.svg" alt="Nock logo">
     </div>
 </template>
 
