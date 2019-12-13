@@ -1,9 +1,9 @@
 <template>
-  <div class="h-100">
+  <div>
     <div class="container background">
       <div class="flex justify-between align-center">
         <img src="../assets/icons/logo.svg" alt="Nock logo" />
-        <router-link to="/">
+        <router-link to="/connect">
           <img src="../assets/icons/profile-icon.svg" alt="Profile icon" />
         </router-link>
       </div>
@@ -25,9 +25,9 @@
         <div class="button-container">
           <router-link
             class="block bg--blue uppercase pa-4 border-radius-full button"
-            to="/"
+            to="/find-room"
           >
-            Créer sa salle
+            Créer son espace
           </router-link>
         </div>
         <div class="mt-20">
