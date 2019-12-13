@@ -5,3 +5,35 @@ $lightgrey: #F8F8F8;
 $blue: #2E3460;
 $red: #DD232E;
 $yellow: #FFBA00;
+
+.text--white {
+  color: $white
+}
+.text--lightgrey {
+  color: $lightgrey
+}
+.text--blue {
+  color: $blue
+}
+.text--red {
+  color: $red
+}
+.text--yellow {
+  color: $yellow
+}
+
+.bg--white {
+  background: $white;
+}
+.bg--lightgrey {
+  background: $lightgrey;
+}
+.bg--blue {
+  background: $blue;
+}
+.bg--red {
+  background: $red;
+}
+.bg--yellow {
+  background: $yellow;
+}

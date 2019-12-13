@@ -6,8 +6,56 @@
 
 body {
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .container {
   padding: 15px 35px;
+}
+
+a {
+  color: $white;
+  text-decoration: none;
+}
+
+.block {
+  display: block;
+}
+.flex {
+  display: flex;
+}
+.inline-block {
+  display: inline-block;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.align-center {
+  align-items: center;
+}
+.h-100 {
+  height: 100vh;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.mt-8 {
+  margin-top: 28px;
+}
+.mt-20 {
+  margin-top: 70px;
+}
+.pa-4 {
+  padding: 12px;
+}
+.border-radius-full {
+  border-radius: 30px;
+}
+.button {
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  -webkit-box-shadow: 0 3px 6px -2px rgba(0,0,0, 0.50);
+        -moz-box-shadow: 0 3px 6px -2px rgba(0,0,0, 0.50);
+        box-shadow: 0 3px 6px -2px rgba(0,0,0, 0.50);
 }
