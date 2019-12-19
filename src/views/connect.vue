@@ -1,6 +1,6 @@
 <template>
   <div>
-    <menu-connect route="/validate-adress" />
+    <menu-connect route="/" />
     <form id="connect" @submit="checkForm" action="/" method="post">
       <div class="field-wrap">
         <label for="email"
@@ -53,11 +53,11 @@ export default {
 
 <style lang="scss" scoped>
 .button-container {
-  font-family: Montserrat B, sans-serif;
   text-align: center;
   margin-top: 140px;
   font-size: 10px;
   text-transform: uppercase;
+  font-weight: bold;
   .buttonClick {
     display: block;
     margin: 20px 10px 10px 10px;
@@ -88,7 +88,6 @@ form {
     font-size: 10px;
     text-decoration: none;
     color: #ffba00;
-    font-family: Montserrat B, sans-serif;
   }
   .field-wrap {
     position: relative;
@@ -101,7 +100,6 @@ form {
       width: 90%;
       padding: 0 0 15px 45px;
       font-size: 14px;
-      font-family: Montserrat B, sans-serif;
       color: #2e3460;
     }
     label {
