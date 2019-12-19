@@ -1,6 +1,6 @@
 <template>
   <div>
-    <menu-connect route="/validate-adress" />
+    <menu-connect route="/" />
     <form id="connect" @submit="checkForm" action="/" method="post">
       <div class="field-wrap">
         <label for="email"
@@ -32,8 +32,12 @@
     </form>
 
     <div class="button-container">
-      <router-link class="buttonClick buttonBefore" to="/feed">Se connecter</router-link>
-      <router-link class="buttonClick buttonAfter" to="/inscription">S'inscrire</router-link>
+      <router-link class="buttonClick buttonBefore" to="/feed"
+        >Se connecter</router-link
+      >
+      <router-link class="buttonClick buttonAfter" to="/inscription"
+        >S'inscrire</router-link
+      >
     </div>
   </div>
 </template>
@@ -49,40 +53,34 @@ export default {
 
 <style lang="scss" scoped>
 .button-container {
-  font-family: Montserrat B, sans-serif;
   text-align: center;
   margin-top: 140px;
   font-size: 10px;
   text-transform: uppercase;
-
+  font-weight: bold;
   .buttonClick {
     display: block;
     margin: 20px 10px 10px 10px;
     padding: 18px 40px;
     border-radius: 5px;
     text-decoration: none;
-
     -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
     box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   }
-
   .buttonBefore {
     background-color: #2e3460;
     color: white;
   }
-
   .buttonAfter {
     background-color: white;
     color: #2e3460;
   }
 }
-
 form {
   margin-top: 125px;
   display: block;
   position: relative;
-
   .mdp {
     position: absolute;
     bottom: -30px;
@@ -90,13 +88,11 @@ form {
     font-size: 10px;
     text-decoration: none;
     color: #ffba00;
-    font-family: Montserrat B, sans-serif;
   }
   .field-wrap {
     position: relative;
     margin-bottom: 40px;
     text-align: center;
-
     input {
       margin: 0 auto;
       border: none;
@@ -104,10 +100,8 @@ form {
       width: 90%;
       padding: 0 0 15px 45px;
       font-size: 14px;
-      font-family: Montserrat B, sans-serif;
       color: #2e3460;
     }
-
     label {
       position: absolute;
       transform: translateY(6px);
