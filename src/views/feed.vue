@@ -1,8 +1,13 @@
 <template>
-  <div>
-    <menuRight />
-    <menu-bottom />
-  </div>
+    <div>
+        <menuRight/>
+        <menu-bottom/>
+        <div class="content">
+            <div class="userPost">
+                <img src="" alt="">
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -15,3 +20,8 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+
+
+</style>
