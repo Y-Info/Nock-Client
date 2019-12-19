@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "../views/home.vue";
 
 Vue.use(VueRouter);
 
@@ -25,7 +25,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "../views/Maps.vue")
+    component: () => import(/* webpackChunkName: "about" */ "../views/maps.vue")
   },
   {
     path: "/validate-adress",
@@ -34,7 +34,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/validateAdress.vue")
+      import(/* webpackChunkName: "about" */ "../views/validate-adress.vue")
   },
   {
     path: "/connect",
@@ -43,7 +43,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Connect.vue")
+      import(/* webpackChunkName: "about" */ "../views/connect.vue")
   },
   {
     path: "/inscription",
@@ -52,7 +52,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Inscription.vue")
+      import(/* webpackChunkName: "about" */ "../views/inscription.vue")
   },
   {
     path: "/feed",
@@ -89,6 +89,15 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
         import(/* webpackChunkName: "about" */ "../views/info.vue")
+  },
+  {
+    path: "/add-post",
+    name: "add-post",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+        import(/* webpackChunkName: "about" */ "../views/add-post.vue")
   }
 ];
 

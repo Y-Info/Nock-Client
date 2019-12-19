@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import menuConnect from "../components/menuConnect";
+import menuConnect from "../components/menu-connect";
 
 export default {
   components: {

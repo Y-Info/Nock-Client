@@ -32,14 +32,14 @@
     </form>
 
     <div class="button-container">
-      <router-link class="buttonClick buttonBefore" to="/validate-adress">Continuer</router-link>
+      <router-link class="buttonClick buttonBefore" to="/feed">Se connecter</router-link>
       <router-link class="buttonClick buttonAfter" to="/inscription">S'inscrire</router-link>
     </div>
   </div>
 </template>
 
 <script>
-import menuConnect from "../components/menuConnect";
+import menuConnect from "../components/menu-connect";
 export default {
   components: {
     menuConnect

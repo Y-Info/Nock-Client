@@ -12,14 +12,14 @@
         <p class="margin">S'agit-il bien de votre adresse ?</p>
 
         <div class="button-container">
-            <router-link class="buttonClick buttonAfter" to="/inscription">Retour</router-link>
-            <router-link class="buttonClick buttonBefore" to="/validate-adress">Confirmer</router-link>
+            <router-link class="buttonClick buttonAfter" to="/maps">Retour</router-link>
+            <router-link class="buttonClick buttonBefore" to="/connect">Confirmer</router-link>
         </div>
     </div>
 </template>
 
 <script>
-    import MenuConnect from "../components/menuConnect";
+    import MenuConnect from "../components/menu-connect";
 
     export default {
         components: {MenuConnect}
