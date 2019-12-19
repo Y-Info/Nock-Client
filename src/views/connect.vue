@@ -1,7 +1,9 @@
 <template>
   <div>
     <menu-connect route="/" />
-    <form id="connect" @submit="checkForm" action="/" method="post">
+    {{ users }}
+    <h2>Connection</h2>
+    <form id="connect" @submit.prevent="checkForm" method="post">
       <div class="field-wrap">
         <label for="email"
           ><img src="../assets/icons/mailIcon.svg" alt="icon mail"
@@ -11,62 +13,85 @@
           type="email"
           name="email"
           id="email"
-          v-model="email"
+          v-model="user.email"
+          placeholder="Entrez votre email"
         />
       </div>
 
       <div class="field-wrap">
-        <label for="password"
-          ><img src="../assets/icons/lock-icon.svg" alt="icon mail"
-        /></label>
+        <label for="password">
+          <img src="../assets/icons/lock-icon.svg" alt="icon mail" />
+        </label>
         <input
           class="password"
           type="password"
           name="password"
           id="password"
-          v-model="password"
+          v-model="user.password"
           min="0"
+          placeholder="Entrez votre mot de passe"
         />
+        <router-link class="mdp" to="/">Mot de passe oublié ?</router-link>
       </div>
-      <router-link class="mdp" to="/">Mot de passe oublié ?</router-link>
+      <div class="button-container">
+        <button type="submit" class="buttonClick buttonBefore">
+          Se connecter
+        </button>
+        <router-link class="buttonClick buttonAfter" to="/inscription">
+          S'inscrire
+        </router-link>
+      </div>
     </form>
-
-    <div class="button-container">
-      <button type="submit" class="buttonClick buttonBefore">
-        Se connecter
-      </button>
-      <router-link class="buttonClick buttonAfter" to="/inscription"
-        >S'inscrire</router-link
-      >
-    </div>
   </div>
 </template>
 
 <script>
 import menuConnect from "../components/menu-connect";
+import axios from "axios";
 export default {
   components: {
     menuConnect
   },
   data() {
     return {
-      email: "",
-      password: ""
+      user: {
+        email: "",
+        password: ""
+      },
+      users: null,
+      userToken: null
     };
+  },
+  created() {
+    axios
+      .post("https://nock-nock.herokuapp.com/api/auth/login", {
+        email: this.user.email,
+        password: this.user.password
+      })
+      .then(u => (this.userToken = u.token));
   }
 };
 </script>
 
 <style lang="scss" scoped>
+h2 {
+  margin-top: 70px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #ffba00;
+  margin-left: 20px;
+}
 .button-container {
   text-align: center;
   margin-top: 140px;
   font-size: 10px;
-  text-transform: uppercase;
   font-weight: bold;
-  .buttonClick {
+  button,
+  .buttonAfter {
+    text-transform: uppercase;
+    width: 95%;
     display: block;
-    margin: 20px 10px 10px 10px;
+    margin: 20px 10px 10px;
     padding: 18px 40px;
     border-radius: 5px;
     text-decoration: none;
@@ -84,7 +109,7 @@ export default {
   }
 }
 form {
-  margin-top: 125px;
+  margin-top: 80px;
   display: block;
   position: relative;
   .mdp {
