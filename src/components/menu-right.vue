@@ -6,3 +6,16 @@
         </router-link>
     </div>
 </template>
+
+<style lang="scss" scoped>
+    h2{
+        color: #ffba00;
+        font-size: 14px;
+        margin: 30px 0 0 30px;
+    }
+    .menuRight{
+        position: fixed;
+        right: 30px;
+        top: 30px;
+    }
+</style>

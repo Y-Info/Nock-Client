@@ -2,6 +2,11 @@
     <div>
         <menuRight/>
         <menu-bottom/>
+        <div class="content">
+            <div class="userPost">
+                <img src="" alt="">
+            </div>
+        </div>
     </div>
 </template>
 
@@ -15,3 +20,8 @@
         }
     };
 </script>
+
+<style lang="scss" scoped>
+
+
+</style>
