@@ -51,8 +51,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-        import(/* webpackChunkName: "about" */ "../views/feed.vue")
+    component: () => import(/* webpackChunkName: "about" */ "../views/feed.vue")
   },
   {
     path: "/alert",
@@ -61,7 +60,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-        import(/* webpackChunkName: "about" */ "../views/alert.vue")
+      import(/* webpackChunkName: "about" */ "../views/alert.vue")
   },
   {
     path: "/calendar",
@@ -70,7 +69,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-        import(/* webpackChunkName: "about" */ "../views/calendar.vue")
+      import(/* webpackChunkName: "about" */ "../views/calendar.vue")
   },
   {
     path: "/info",
@@ -78,8 +77,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-        import(/* webpackChunkName: "about" */ "../views/info.vue")
+    component: () => import(/* webpackChunkName: "about" */ "../views/info.vue")
   },
   {
     path: "/add-post",
@@ -88,7 +86,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-        import(/* webpackChunkName: "about" */ "../views/add-post.vue")
+      import(/* webpackChunkName: "about" */ "../views/add-post.vue")
   },
   {
     path: "/find-room",
@@ -97,7 +95,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-        import(/* webpackChunkName: "about" */ "../views/find-room.vue")
+      import(/* webpackChunkName: "about" */ "../views/find-room.vue")
   }
 ];
 

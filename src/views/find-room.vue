@@ -25,7 +25,12 @@
         <p class="address-name">
           {{ addresses[0].address }}
         </p>
-        <img width="15%" style="margin-top:10px" src="../assets/img/imgAdress.svg" alt="Building image">
+        <img
+          width="15%"
+          style="margin-top:10px"
+          src="../assets/img/imgAdress.svg"
+          alt="Building image"
+        />
       </div>
       <p class="address-distance">
         {{ addresses[0].distance }}
@@ -49,13 +54,13 @@ export default {
       address: this.value,
       addresses: [
         {
-          address: '497 Evergreen Rd. Roseville',
-          distance: '4.6 mi'
+          address: "497 Evergreen Rd. Roseville",
+          distance: "4.6 mi"
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -84,8 +89,8 @@ export default {
   justify-content: center;
   padding: 10px 20px;
   -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
 }
 
 .search {
@@ -93,7 +98,7 @@ export default {
 }
 
 .address {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 8px;
   border: none;
   border-bottom: $yellow 1px solid;
@@ -112,8 +117,8 @@ export default {
   padding: 10px 20px;
   border-radius: 5px;
   -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   .address-name {
     font-size: 12px;
     font-weight: bold;
@@ -137,7 +142,6 @@ export default {
     -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
     box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-
   }
   a:first-child {
     color: $blue;
