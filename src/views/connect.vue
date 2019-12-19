@@ -32,9 +32,9 @@
     </form>
 
     <div class="button-container">
-      <router-link class="buttonClick buttonBefore" to="/feed"
-        >Se connecter</router-link
-      >
+      <button type="submit" class="buttonClick buttonBefore">
+        Se connecter
+      </button>
       <router-link class="buttonClick buttonAfter" to="/inscription"
         >S'inscrire</router-link
       >
@@ -47,6 +47,12 @@ import menuConnect from "../components/menu-connect";
 export default {
   components: {
     menuConnect
+  },
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
   }
 };
 </script>
