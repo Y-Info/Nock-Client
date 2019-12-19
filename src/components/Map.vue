@@ -9,10 +9,10 @@ export default {
   components: {
     LMap
   },
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
-      this.$refs.map.mapObject.setView([45.745670, 4.837680], 7);
-    })
+      this.$refs.map.mapObject.setView([45.74567, 4.83768], 7);
+    });
   }
 };
 </script>

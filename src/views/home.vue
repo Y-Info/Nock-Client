@@ -19,8 +19,8 @@
           Titre principal
         </h2>
         <p class="text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut ero labore et dolore.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut ero labore et dolore.
         </p>
         <div class="button-container">
           <router-link
