@@ -32,8 +32,12 @@
     </form>
 
     <div class="button-container">
-      <router-link class="buttonClick buttonBefore" to="/feed">Se connecter</router-link>
-      <router-link class="buttonClick buttonAfter" to="/inscription">S'inscrire</router-link>
+      <router-link class="buttonClick buttonBefore" to="/feed"
+        >Se connecter</router-link
+      >
+      <router-link class="buttonClick buttonAfter" to="/inscription"
+        >S'inscrire</router-link
+      >
     </div>
   </div>
 </template>
@@ -54,35 +58,29 @@ export default {
   margin-top: 140px;
   font-size: 10px;
   text-transform: uppercase;
-
   .buttonClick {
     display: block;
     margin: 20px 10px 10px 10px;
     padding: 18px 40px;
     border-radius: 5px;
     text-decoration: none;
-
     -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
     box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   }
-
   .buttonBefore {
     background-color: #2e3460;
     color: white;
   }
-
   .buttonAfter {
     background-color: white;
     color: #2e3460;
   }
 }
-
 form {
   margin-top: 125px;
   display: block;
   position: relative;
-
   .mdp {
     position: absolute;
     bottom: -30px;
@@ -96,7 +94,6 @@ form {
     position: relative;
     margin-bottom: 40px;
     text-align: center;
-
     input {
       margin: 0 auto;
       border: none;
@@ -107,7 +104,6 @@ form {
       font-family: Montserrat B, sans-serif;
       color: #2e3460;
     }
-
     label {
       position: absolute;
       transform: translateY(6px);
