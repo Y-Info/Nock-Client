@@ -1,7 +1,7 @@
 <template>
     <div>
         <menuRight/>
-        <menu-bottom/>
+        <menuBottom/>
         <div class="content">
             <div class="userPost">
                 <img src="../assets/img/profilUser.svg" alt="Photo de profil">
@@ -16,7 +16,7 @@
                 ex ea commodo consequat.</p>
             <div class="actionPost">
                 <div class="comment">
-                    <img src="../assets/icons/comment.svg" id="button" alt="Icon commentaire">
+                    <img src="../assets/icons/comment.svg" id="firstButton" alt="Icon commentaire">
                     <span class="numberComment">214</span>
                 </div>
                 <img v-if="isAdmin===true" class="delete" src="../assets/icons/delete.svg" alt="Icon suppression">
@@ -61,7 +61,7 @@
     export default {
         components: {
             menuBottom,
-            menuRight,
+            menuRight
         },
         data(){
             return{
