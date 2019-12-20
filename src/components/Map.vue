@@ -6,7 +6,7 @@
       :center="center"
       :min-zoom="minZoom"
       :max-zoom="maxZoom"
-      style="height: 400px; width: 100%"
+      :style="styleSize"
     >
       <l-tile-layer
         v-for="tileProvider in tileProviders"
@@ -17,6 +17,9 @@
         :token="token"
         layer-type="base"
       />
+	
+	<v-geosearch v-if="hasSearchBar" :options="geosearchOptions" ></v-geosearch>
+	  
     </l-map>
   </div>
 </template>
@@ -26,6 +29,9 @@ import {
   LMap,
   LTileLayer
 } from 'vue2-leaflet';
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
+import VGeosearch from 'vue2-leaflet-geosearch';
+
 const tileProviders = [
   {
     name: 'OpenStreetMap',
@@ -42,7 +48,8 @@ export default {
   name: 'Example',
   components: {
     LMap,
-    LTileLayer
+	LTileLayer,
+	VGeosearch
   },
   data() {
     return {
@@ -57,8 +64,25 @@ export default {
       zoom: 3,
       minZoom: 1,
       maxZoom: 20,
-      tileProviders: tileProviders
+	  tileProviders: tileProviders,
+	  geosearchOptions: { 
+		provider: this.provider,
+		autoComplete: true,
+		autoCompleteDelay: 250,
+		showPopup: true, 
+      }
     };
+  },
+  props: {
+	  styleSize: String,
+	  hasSearchBar: Boolean,
+	  provider: OpenStreetMapProvider
   }
 };
 </script>
+
+<style lang="scss">
+	.geosearch {
+		display: none !important;
+	} 
+</style>

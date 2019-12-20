@@ -1,5 +1,6 @@
 <template>
   <div class="container relative">
+    <Map :styleSize="styleMap" :hasSearchBar="true" :provider="provider" />
     <div class="topbar">
       <router-link to="/">
         <img
@@ -18,6 +19,8 @@
         type="text"
         name="address"
         v-model="address"
+        @change="getAdress"
+        searchbar="1"
       />
     </div>
     <div class="card">
@@ -48,7 +51,13 @@
 </template>
 
 <script>
+import Map from "../components/Map";
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
+
 export default {
+  components: {
+    Map
+  },
   data() {
     return {
       address: this.value,
@@ -57,9 +66,20 @@ export default {
           address: "497 Evergreen Rd. Roseville",
           distance: "4.6 mi"
         }
-      ]
+      ],
+      styleMap: "height: 100vh; width: 100vw; position:absolute; top:0px; left:0px; z-index: -1",
+      provider: new OpenStreetMapProvider()
     };
-  }
+  },
+  methods: {
+	  async getAdress() {
+      console.log('hello you');
+      console.log(this.provider);
+      console.log(this.adress);
+      const results = await this.provider.search({ query: this.address });
+      this.addresses = results
+	  }
+  },
 };
 </script>
 
@@ -67,7 +87,7 @@ export default {
 .topbar {
   display: flex;
   justify-content: center;
-}
+} 
 
 .arrow {
   position: fixed;
@@ -84,6 +104,7 @@ export default {
 }
 
 .searchbar {
+  background-color: white;
   margin-top: 30px;
   display: flex;
   justify-content: center;
@@ -113,6 +134,7 @@ export default {
 }
 
 .card {
+  background-color: white;  
   margin-top: 10px;
   padding: 10px 20px;
   border-radius: 5px;
@@ -144,6 +166,7 @@ export default {
     box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   }
   a:first-child {
+    background-color: white;
     color: $blue;
   }
   a:nth-child(2) {
