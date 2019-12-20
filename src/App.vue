@@ -8,6 +8,6 @@
 export default {};
 </script>
 
-<style lang="scss">
+<style type="text/scss" lang="scss">
 @import url("/src/assets/styles/main.scss");
 </style>
