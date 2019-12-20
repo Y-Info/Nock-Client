@@ -105,10 +105,7 @@ export default {
         email: "",
         password: "",
         verifPassword: ""
-      },
-      passwordError: false,
-      namesError: false,
-      emailError: false
+      }
     };
   },
   methods: {

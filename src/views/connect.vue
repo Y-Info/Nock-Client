@@ -64,13 +64,29 @@ export default {
   },
   methods: {
     checkForm() {
-      axios
-        .post("https://nock-nock.herokuapp.com/api/auth/login", {
-          email: this.user.email,
-          password: this.user.password
-        })
-        .then(u => (this.userToken = u.data.token), this.$router.push("/feed"))
-        .catch(error => this.$toasted.show("Erreur" + error));
+      if (this.user.email !== "" && this.user.email !== "") {
+        axios
+          .post("https://nock-nock.herokuapp.com/api/auth/login", {
+            email: this.user.email,
+            password: this.user.password
+          })
+          .then(u => (this.userToken = u.data.token));
+        if (this.userToken !== null || this.userToken !== undefined) {
+          this.$router.push("/feed");
+        } else {
+          this.$toasted.error("Erreur lors de la connection", {
+            theme: "toasted-primary",
+            position: "top-right",
+            duration: 3000
+          });
+        }
+      } else {
+        this.$toasted.error("Les champs sont vides", {
+          theme: "toasted-primary",
+          position: "top-right",
+          duration: 3000
+        });
+      }
     }
   }
 };
