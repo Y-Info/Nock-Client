@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <menu-connect route="/connect" />
+    <div>
+        <menu-connect route="/connect"/>
 
-    <h2>Création du compte</h2>
+        <h2>Création du compte</h2>
 
     <form id="connect" @submit.prevent="sendForm" action="/" method="post">
       <div class="field-wrap">
@@ -168,58 +168,67 @@ h2 {
     text-transform: uppercase;
     text-decoration: none;
 
-    -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-  }
+        .buttonClick {
+            display: block;
+            margin: 20px 10px 10px 10px;
+            padding: 18px 40px;
+            border-radius: 5px;
+            text-decoration: none;
 
-  .buttonBefore {
-    background-color: #2e3460;
-    color: white;
-  }
-}
+            -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+        }
 
-form {
-  margin-top: 30px;
-  display: block;
-  position: relative;
-
-  .mdp {
-    position: absolute;
-    bottom: -30px;
-    right: 20px;
-    font-size: 10px;
-    text-decoration: none;
-    color: #ffba00;
-    font-family: Montserrat B, sans-serif;
-  }
-
-  .field-wrap {
-    position: relative;
-    margin-bottom: 40px;
-    text-align: center;
-
-    input {
-      margin: 0 auto;
-      border: none;
-      border-bottom: #2e3460 1px solid;
-      width: 90%;
-      padding: 0 0 15px 45px;
-      font-size: 14px;
-      font-family: Montserrat B, sans-serif;
-      color: #2e3460;
+        .buttonBefore {
+            background-color: #2e3460;
+            color: white;
+        }
     }
 
-    label {
-      position: absolute;
-      transform: translateY(6px);
-      left: 20px;
-      top: -10px;
-      color: rgba($white, 0.5);
-      transition: all 0.25s ease;
-      -webkit-backface-visibility: hidden;
-      pointer-events: none;
-      font-size: 22px;
+    form {
+        margin-top: 30px;
+        display: block;
+        position: relative;
+
+        .mdp {
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            font-size: 10px;
+            text-decoration: none;
+            color: #ffba00;
+            font-family: Montserrat B, sans-serif;
+        }
+
+        .field-wrap {
+            position: relative;
+            margin-bottom: 40px;
+            text-align: center;
+
+            input {
+                margin: 0 auto;
+                border: none;
+                border-bottom: #2e3460 1px solid;
+                width: 90%;
+                padding: 0 0 15px 45px;
+                font-size: 14px;
+                font-family: Montserrat B, sans-serif;
+                color: #2e3460;
+            }
+
+            label {
+                position: absolute;
+                transform: translateY(6px);
+                left: 20px;
+                top: -10px;
+                color: rgba($white, 0.5);
+                transition: all 0.25s ease;
+                -webkit-backface-visibility: hidden;
+                pointer-events: none;
+                font-size: 22px;
+            }
+        }
     }
   }
   .errors {
