@@ -34,7 +34,12 @@
           <h2 class="uppercase text--yellow title">
             Sous-titre
           </h2>
-          <Map :styleSize="styleMap" />
+          <Map
+            :styleSize="styleMap"
+            :hasSearchBar="false"
+            :center="[]"
+            :hasMarker="false"
+          />
           <p class="text mt-20">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
             eiusmod tempor incididunt ut ero labore et dolore.
