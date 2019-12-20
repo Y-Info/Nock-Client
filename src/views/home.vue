@@ -34,7 +34,7 @@
           <h2 class="uppercase text--yellow title">
             Sous-titre
           </h2>
-          <Map :styleSize="styleMap"/>
+          <Map :styleSize="styleMap" />
           <p class="text mt-20">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
             eiusmod tempor incididunt ut ero labore et dolore.
@@ -57,8 +57,8 @@ export default {
   },
   data() {
     return {
-      styleMap: 'height: 300px; width: 100%;'
-    }
+      styleMap: "height: 300px; width: 100%;"
+    };
   }
 };
 </script>

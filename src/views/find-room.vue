@@ -1,6 +1,11 @@
 <template>
   <div class="container relative">
-    <Map :styleSize="styleMap" :hasSearchBar="true" :provider="provider" />
+    <Map
+      :styleSize="styleMap"
+      :hasSearchBar="true"
+      :provider="provider"
+      :center="center"
+    />
     <div class="topbar">
       <router-link to="/">
         <img
@@ -23,21 +28,24 @@
         searchbar="1"
       />
     </div>
-    <div class="card">
+    <div
+      class="card"
+      v-for="(adresse, index) in evenAdresses"
+      :key="index"
+      v-on:click="goToAdresse(adresse)"
+    >
       <div class="flex justify-between">
         <p class="address-name">
-          {{ addresses[0].address }}
+          {{ adresse.label }}
         </p>
         <img
-          width="15%"
+          width="25%"
           style="margin-top:10px"
           src="../assets/img/imgAdress.svg"
           alt="Building image"
         />
       </div>
-      <p class="address-distance">
-        {{ addresses[0].distance }}
-      </p>
+      <p class="address-distance"></p>
     </div>
     <div class="buttons-action fixed flex justify-between uppercase">
       <router-link to="/">
@@ -52,7 +60,7 @@
 
 <script>
 import Map from "../components/Map";
-import { OpenStreetMapProvider } from 'leaflet-geosearch';
+import { OpenStreetMapProvider } from "leaflet-geosearch";
 
 export default {
   components: {
@@ -61,25 +69,32 @@ export default {
   data() {
     return {
       address: this.value,
-      addresses: [
-        {
-          address: "497 Evergreen Rd. Roseville",
-          distance: "4.6 mi"
-        }
-      ],
-      styleMap: "height: 100vh; width: 100vw; position:absolute; top:0px; left:0px; z-index: -1",
-      provider: new OpenStreetMapProvider()
+      addresses: [],
+      styleMap:
+        "height: 100vh; width: 100vw; position:absolute; top:0px; left:0px; z-index: -1",
+      provider: new OpenStreetMapProvider(),
+      center: []
     };
   },
   methods: {
-	  async getAdress() {
-      console.log('hello you');
-      console.log(this.provider);
-      console.log(this.adress);
+    async getAdress() {
       const results = await this.provider.search({ query: this.address });
-      this.addresses = results
-	  }
+      this.addresses = results;
+      if (results.length != 0) this.center = [results[0].y, results[0].x];
+      else this.center = [];
+    },
+    goToAdresse(adresse) {
+      this.addresses = [adresse];
+      this.center = [adresse.y, adresse.x];
+    }
   },
+  computed: {
+    evenAdresses: function() {
+      return this.addresses.filter(function(adresse, index) {
+        return index < 5;
+      });
+    }
+  }
 };
 </script>
 
@@ -87,8 +102,7 @@ export default {
 .topbar {
   display: flex;
   justify-content: center;
-} 
-
+}
 .arrow {
   position: fixed;
   width: 20px;
@@ -96,13 +110,11 @@ export default {
   top: 40px;
   left: 20px;
 }
-
 .title {
   font-size: 14px;
   font-weight: bold;
   text-align: center;
 }
-
 .searchbar {
   background-color: white;
   margin-top: 30px;
@@ -113,11 +125,9 @@ export default {
   -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
 }
-
 .search {
   margin-right: 10px;
 }
-
 .address {
   font-family: "Montserrat", sans-serif;
   font-size: 8px;
@@ -128,19 +138,18 @@ export default {
   display: flex;
   justify-content: center;
 }
-
 .address::placeholder {
   color: $yellow;
 }
-
 .card {
-  background-color: white;  
+  background-color: white;
   margin-top: 10px;
   padding: 10px 20px;
   border-radius: 5px;
   -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
   .address-name {
     font-size: 12px;
     font-weight: bold;
