@@ -62,13 +62,16 @@ export default {
       userToken: null
     };
   },
-  created() {
-    axios
-      .post("https://nock-nock.herokuapp.com/api/auth/login", {
-        email: this.user.email,
-        password: this.user.password
-      })
-      .then(u => (this.userToken = u.token));
+  methods: {
+    checkForm() {
+      axios
+        .post("https://nock-nock.herokuapp.com/api/auth/login", {
+          email: this.user.email,
+          password: this.user.password
+        })
+        .then(u => (this.userToken = u.data.token), this.$router.push("/feed"))
+        .catch(error => this.$toasted.show("Erreur" + error));
+    }
   }
 };
 </script>
