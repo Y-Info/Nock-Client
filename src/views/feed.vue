@@ -19,6 +19,7 @@
                     <img src="../assets/icons/comment.svg" id="button" alt="Icon commentaire">
                     <span class="numberComment">214</span>
                 </div>
+                <img class="delete" src="../assets/icons/delete.svg" alt="Icon suppression">
             </div>
         </div>
         <div class="commentUser">
@@ -104,8 +105,14 @@
 
         .actionPost {
             margin-top: 20px;
+            display: block;
 
             .comment {
+                width: 90%;
+                display: inline-block;
+                vertical-align: top;
+                box-sizing: border-box;
+
                 img {
                     width: 15px;
                     display: inline-block;
@@ -123,6 +130,12 @@
                     margin-left: 10px;
                 }
             }
+            .delete{
+                display: inline-block;
+                vertical-align: top;
+                box-sizing: border-box;
+                width: 18px;
+            }
         }
     }
 
@@ -136,7 +149,6 @@
         top: 50%;
         transform: translateX(-50%);
         padding: 20px;
-
 
 
         .userPost {
