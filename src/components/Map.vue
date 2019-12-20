@@ -63,7 +63,6 @@ export default {
         attributionControl: false,
         zoomSnap: true
       },
-      zoom: 16,
       minZoom: 1,
       maxZoom: 20,
       tileProviders: tileProviders,
@@ -72,25 +71,16 @@ export default {
         autoComplete: true,
         autoCompleteDelay: 250,
         showPopup: false
-      },
-      hasMarker: false
+      }
     };
   },
   props: {
     center: Array,
     styleSize: String,
     hasSearchBar: Boolean,
+    hasMarker: Boolean,
+    zoom: Number,
     provider: OpenStreetMapProvider
-  },
-  mounted() {
-    if (this.center.length != 0) {
-      this.zoom = 18;
-      this.hasMarker = true;
-    } else {
-      this.zoom = 5;
-      this.center = [];
-      this.hasMarker = false;
-    }
   }
 };
 </script>

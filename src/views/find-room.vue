@@ -5,6 +5,8 @@
       :hasSearchBar="true"
       :provider="provider"
       :center="center"
+      :zoom="zoomMap"
+      :hasMarker="markerMap"
     />
     <div class="topbar">
       <router-link to="/">
@@ -73,19 +75,30 @@ export default {
       styleMap:
         "height: 100vh; width: 100vw; position:absolute; top:0px; left:0px; z-index: -1",
       provider: new OpenStreetMapProvider(),
-      center: []
+      center: [],
+      zoomMap: 5,
+      markerMap: false
     };
   },
   methods: {
     async getAdress() {
       const results = await this.provider.search({ query: this.address });
       this.addresses = results;
-      if (results.length != 0) this.center = [results[0].y, results[0].x];
-      else this.center = [];
+      if (results.length != 0) {
+        this.center = [results[0].y, results[0].x];
+        this.zoomMap = 18;
+        this.markerMap = true;
+      } else {
+        this.center = [];
+        this.zoomMap = 5;
+        this.markerMap = false;
+      }
     },
     goToAdresse(adresse) {
       this.addresses = [adresse];
       this.center = [adresse.y, adresse.x];
+      this.markerMap = true;
+      this.zoomMap = 18;
     }
   },
   computed: {
