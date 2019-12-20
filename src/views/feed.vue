@@ -19,6 +19,7 @@
                     <img src="../assets/icons/comment.svg" id="button" alt="Icon commentaire">
                     <span class="numberComment">214</span>
                 </div>
+                <img class="delete" src="../assets/icons/delete.svg" alt="Icon suppression">
             </div>
         </div>
         <div class="commentUser">
