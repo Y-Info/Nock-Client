@@ -1,11 +1,11 @@
 <template>
     <div>
-        <menu-connect route="/connect"/>
+        <menu-connect route="/list-people"/>
         <div class="profilUser">
             <img src="../assets/img/profilUser.svg" alt="photo de profil">
             <p class="name">Nom Prénom</p>
 
-            <div  v-if="isAdmin===true"  class="chooseAdmin">
+            <div  v-if="isAdmin===true" class="chooseAdmin">
                 <p>Admin</p>
                 <label class="switch">
                     <input type="checkbox">

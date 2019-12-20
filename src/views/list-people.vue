@@ -2,7 +2,7 @@
     <div>
         <menuRight/>
         <div class="listPost">
-            <div class="post">
+            <div @click="$router.push('/profile')" class="post">
                 <div class="userPost">
                     <img src="../assets/img/profilUser.svg" alt="Photo de profil">
                     <div class="infoProfil">
@@ -11,7 +11,7 @@
                     </div>
                 </div>
             </div>
-            <div class="post">
+            <div @click="$router.push('/profile')" class="post">
                 <div class="userPost">
                     <img src="../assets/img/profilUser.svg" alt="Photo de profil">
                     <div class="infoProfil">
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="post">
+            <div @click="$router.push('/profile')" class="post">
                 <div class="userPost">
                     <img src="../assets/img/profilUser.svg" alt="Photo de profil">
                     <div class="infoProfil">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="post">
+            <div @click="$router.push('/profile')" class="post">
                 <div class="userPost">
                     <img src="../assets/img/profilUser.svg" alt="Photo de profil">
                     <div class="infoProfil">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="post">
+            <div @click="$router.push('/profile')" class="post">
                 <div class="userPost">
                     <img src="../assets/img/profilUser.svg" alt="Photo de profil">
                     <div class="infoProfil">
