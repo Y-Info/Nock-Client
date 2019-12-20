@@ -91,7 +91,7 @@
 
 <script>
 import menuConnect from "../components/menu-connect";
-import axios from "axios";
+import apirequest from "../utils/apirequest";
 
 export default {
   components: {
@@ -113,21 +113,18 @@ export default {
       if (this.password === this.verifPassword) {
         if (this.firstName !== "" || this.lastName !== "") {
           if (this.email !== "") {
-            axios
-              .post(`https://nock-nock.herokuapp.com/api/auth/signup`, {
-                firstName: this.user.firstName,
-                lastName: this.user.lastName,
-                email: this.user.email,
-                password: this.user.password
-              })
-              .then(() => {
-                this.$router.push("/connect");
-                this.$toasted.show("Compte créer", {
-                  theme: "toasted-primary",
-                  position: "top-right",
-                  duration: 5000
-                });
-              });
+            apirequest("/auth/signup", {
+              firstName: this.user.firstName,
+              lastName: this.user.lastName,
+              email: this.user.email,
+              password: this.user.password
+            });
+            this.$router.push("/connect");
+            this.$toasted.show("Compte créer", {
+              theme: "toasted-primary",
+              position: "top-right",
+              duration: 5000
+            });
           } else {
             this.emailError = !this.emailError;
           }

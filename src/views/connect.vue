@@ -47,7 +47,8 @@
 
 <script>
 import menuConnect from "../components/menu-connect";
-import axios from "axios";
+import apirequest from "../utils/apirequest";
+
 export default {
   components: {
     menuConnect
@@ -65,12 +66,10 @@ export default {
   methods: {
     checkForm() {
       if (this.user.email !== "" && this.user.email !== "") {
-        axios
-          .post("https://nock-nock.herokuapp.com/api/auth/login", {
-            email: this.user.email,
-            password: this.user.password
-          })
-          .then(u => (this.userToken = u.data.token));
+        apirequest("/auth/login", {
+          email: this.user.email,
+          password: this.user.password
+        });
         if (this.userToken !== null || this.userToken !== undefined) {
           this.$router.push("/feed");
         } else {

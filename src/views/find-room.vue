@@ -50,10 +50,10 @@
       <p class="address-distance"></p>
     </div>
     <div class="buttons-action fixed flex justify-between uppercase">
-      <router-link to="/">
+      <router-link to="/create-room" v-if="!buildingFound">
         Créer un espace
       </router-link>
-      <router-link to="/">
+      <router-link to="/connect" v-if="buildingFound">
         Rejoindre un espace
       </router-link>
     </div>
@@ -63,6 +63,7 @@
 <script>
 import Map from "../components/Map";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
+// import apirequest from "../utils/apirequest";
 
 export default {
   components: {
@@ -77,7 +78,8 @@ export default {
       provider: new OpenStreetMapProvider(),
       center: [],
       zoomMap: 5,
-      markerMap: false
+      markerMap: false,
+      buildingFound: false
     };
   },
   methods: {
@@ -133,10 +135,13 @@ export default {
   margin-top: 30px;
   display: flex;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 15px 30px;
   -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+  input {
+    font-size: 1.5em;
+  }
 }
 .search {
   margin-right: 10px;

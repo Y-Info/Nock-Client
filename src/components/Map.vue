@@ -61,7 +61,10 @@ export default {
       mapOptions: {
         zoomControl: false,
         attributionControl: false,
-        zoomSnap: true
+        zoomSnap: false,
+        doubleClickZoom: false,
+        scrollWheelZoom: false,
+        touchZoom: false
       },
       minZoom: 1,
       maxZoom: 20,
