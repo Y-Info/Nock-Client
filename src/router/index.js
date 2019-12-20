@@ -80,13 +80,46 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ "../views/info.vue")
   },
   {
+    path: "/add-event",
+    name: "add-event",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/add.vue"),
+    props: {
+      statutAdd: 1,
+      title: "événement",
+      txtButton: "l'événement"
+    }
+  },
+  {
+    path: "/add-survey",
+    name: "add-survey",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/add.vue"),
+    props: {
+      statutAdd: 2,
+      title: "sondage",
+      txtButton: "le sondage"
+    }
+  },
+  {
     path: "/add-post",
     name: "add-post",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/add-post.vue")
+      import(/* webpackChunkName: "about" */ "../views/add.vue"),
+    props: {
+      statutAdd: 3,
+      title: "publication",
+      txtButton: "la publication"
+    }
   },
   {
     path: "/find-room",
