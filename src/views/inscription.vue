@@ -209,14 +209,14 @@ form {
       top: -10px;
       color: rgba($white, 0.5);
       transition: all 0.25s ease;
-      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
       pointer-events: none;
       font-size: 22px;
     }
   }
-  .errors {
-    font-size: 12px;
-    color: crimson;
-  }
+}
+.errors {
+  font-size: 12px;
+  color: crimson;
 }
 </style>

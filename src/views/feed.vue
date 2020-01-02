@@ -26,19 +26,42 @@
             <span class="numberComment">214</span>
           </div>
           <img
+            v-if="isAdmin === true"
             class="delete"
             src="../assets/icons/delete.svg"
             alt="Icon suppression"
           />
         </div>
       </div>
-      <img
-        v-if="isAdmin === true"
-        class="delete"
-        src="../assets/icons/delete.svg"
-        alt="Icon suppression"
-      />
+      <h3>Titre du post</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </p>
+      <div class="actionPost">
+        <div class="comment">
+          <img
+            src="../assets/icons/comment.svg"
+            id="button"
+            alt="Icon commentaire"
+          />
+          <span class="numberComment">214</span>
+        </div>
+        <img
+          class="delete"
+          src="../assets/icons/delete.svg"
+          alt="Icon suppression"
+        />
+      </div>
     </div>
+    <img
+      v-if="isAdmin === true"
+      class="delete"
+      src="../assets/icons/delete.svg"
+      alt="Icon suppression"
+    />
     <div class="commentUser">
       <div class="userPost">
         <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
@@ -80,6 +103,11 @@ export default {
   components: {
     menuBottom,
     menuRight
+  },
+  data() {
+    return {
+      isAdmin: false
+    };
   }
 };
 </script>
