@@ -1,15 +1,38 @@
 <template>
   <div>
-    <menuRight />
-    <menu-bottom />
-    <div class="content">
-      <h3>Titre du l'infos</h3>
-      <img src="../assets/img/trash.jpg" alt="photo poubelle" />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet
-        debitis eum odit quisquam quod sint, vel veniam. Assumenda deserunt eius
-        est, exercitationem facilis ipsa nihil quasi soluta vero voluptatum?
-      </p>
+    <div>
+      <menuRight />
+      <menu-bottom />
+      <div class="content">
+        <h3>Titre du l'infos</h3>
+        <img src="../assets/img/trash.jpg" alt="photo poubelle" />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet
+          debitis eum odit quisquam quod sint, vel veniam. Assumenda deserunt
+          eius est, exercitationem facilis ipsa nihil quasi soluta vero
+          voluptatum?
+        </p>
+      </div>
+      <div class="content">
+        <h3>Titre du l'infos</h3>
+        <img src="../assets/img/trash.jpg" alt="photo poubelle" />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet
+          debitis eum odit quisquam quod sint, vel veniam. Assumenda deserunt
+          eius est, exercitationem facilis ipsa nihil quasi soluta vero
+          voluptatum?
+        </p>
+      </div>
+      <div class="content">
+        <h3>Titre du l'infos</h3>
+        <img src="../assets/img/trash.jpg" alt="photo poubelle" />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet
+          debitis eum odit quisquam quod sint, vel veniam. Assumenda deserunt
+          eius est, exercitationem facilis ipsa nihil quasi soluta vero
+          voluptatum?
+        </p>
+      </div>
     </div>
     <div class="content">
       <h3>Titre du l'infos</h3>
