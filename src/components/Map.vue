@@ -1,18 +1,95 @@
 <template>
-  <l-map style="width:100%;height:250px" ref="map"></l-map>
+  <div>
+    <l-map
+      :zoom.sync="zoom"
+      :options="mapOptions"
+      :center="center.length != 0 ? center : [48.8534, 2.3488]"
+      :min-zoom="minZoom"
+      :max-zoom="maxZoom"
+      :style="styleSize"
+    >
+      <l-tile-layer
+        v-for="tileProvider in tileProviders"
+        :key="tileProvider.name"
+        :name="tileProvider.name"
+        :visible="tileProvider.visible"
+        :url="tileProvider.url"
+        :token="token"
+        layer-type="base"
+      />
+
+      <v-geosearch
+        v-if="hasSearchBar"
+        :options="geosearchOptions"
+      ></v-geosearch>
+
+      <l-marker :lat-lng="center" v-if="hasMarker"></l-marker>
+    </l-map>
+  </div>
 </template>
 
 <script>
-import { LMap } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+import { OpenStreetMapProvider } from "leaflet-geosearch";
+import VGeosearch from "vue2-leaflet-geosearch";
 
-export default {
-  components: {
-    LMap
+const tileProviders = [
+  {
+    name: "OpenStreetMap",
+    visible: true,
+    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
   },
-  mounted() {
-    this.$nextTick(() => {
-      this.$refs.map.mapObject.setView([45.74567, 4.83768], 7);
-    });
+  {
+    name: "OpenTopoMap",
+    visible: false,
+    url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png"
+  }
+];
+export default {
+  name: "Example",
+  components: {
+    LMap,
+    LTileLayer,
+    VGeosearch,
+    LMarker
+  },
+  data() {
+    return {
+      opacity: 0.6,
+      token:
+        "pk.eyJ1Ijoic2NvdGhpcyIsImEiOiJjaWp1Y2ltYmUwMDBicmJrdDQ4ZDBkaGN4In0.sbihZCZJ56-fsFNKHXF8YQ",
+      mapOptions: {
+        zoomControl: false,
+        attributionControl: false,
+        zoomSnap: false,
+        doubleClickZoom: false,
+        scrollWheelZoom: false,
+        touchZoom: false
+      },
+      minZoom: 1,
+      maxZoom: 20,
+      tileProviders: tileProviders,
+      geosearchOptions: {
+        provider: this.provider,
+        autoComplete: true,
+        autoCompleteDelay: 250,
+        showPopup: false
+      }
+    };
+  },
+  props: {
+    center: Array,
+    styleSize: String,
+    hasSearchBar: Boolean,
+    hasMarker: Boolean,
+    zoom: Number,
+    provider: OpenStreetMapProvider
   }
 };
 </script>
+
+<style lang="scss">
+.geosearch {
+  display: none !important;
+}
+</style>

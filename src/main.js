@@ -5,7 +5,12 @@ import router from "./router";
 import store from "./store";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
+import Toasted from "vue-toasted";
 
+Vue.use(Toasted);
+
+// you can also pass options, check options reference below
+Vue.use(Toasted);
 // this part resolve an issue where the markers would not appear
 delete Icon.Default.prototype._getIconUrl;
 
