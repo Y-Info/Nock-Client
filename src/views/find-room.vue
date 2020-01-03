@@ -49,11 +49,8 @@
       </div>
       <p class="address-distance"></p>
     </div>
-    <div class="buttons-action fixed flex justify-between uppercase">
-      <router-link to="/create-room" v-if="!buildingFound">
-        Créer un espace
-      </router-link>
-      <router-link to="/connect" v-if="buildingFound">
+    <div class="buttons-action fixed justify-center uppercase">
+      <router-link to="/connect">
         Rejoindre un espace
       </router-link>
     </div>
@@ -101,6 +98,7 @@ export default {
       this.center = [adresse.y, adresse.x];
       this.markerMap = true;
       this.zoomMap = 18;
+      this.$router.push(`/feed/${adresse.raw.place_id}`);
     }
   },
   computed: {
@@ -195,10 +193,6 @@ export default {
   a:first-child {
     background-color: white;
     color: $blue;
-  }
-  a:nth-child(2) {
-    color: $white;
-    background: $blue;
   }
 }
 </style>

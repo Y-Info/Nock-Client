@@ -5,7 +5,7 @@
       <menu-bottom />
       <div class="content">
         <div class="userPost">
-          <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
+          <img src="../../assets/img/profilUser.svg" alt="Photo de profil" />
           <p class="name">Nom <br />Prénom</p>
           <p class="time">Il y a 1h</p>
         </div>
@@ -19,7 +19,7 @@
         <div class="actionPost">
           <div class="comment">
             <img
-              src="../assets/icons/comment.svg"
+              src="../../assets/icons/comment.svg"
               id="button"
               alt="Icon commentaire"
             />
@@ -28,7 +28,7 @@
           <img
             v-if="isAdmin === true"
             class="delete"
-            src="../assets/icons/delete.svg"
+            src="../../assets/icons/delete.svg"
             alt="Icon suppression"
           />
         </div>
@@ -43,7 +43,7 @@
       <div class="actionPost">
         <div class="comment">
           <img
-            src="../assets/icons/comment.svg"
+            src="../../assets/icons/comment.svg"
             id="button"
             alt="Icon commentaire"
           />
@@ -51,7 +51,7 @@
         </div>
         <img
           class="delete"
-          src="../assets/icons/delete.svg"
+          src="../../assets/icons/delete.svg"
           alt="Icon suppression"
         />
       </div>
@@ -59,12 +59,12 @@
     <img
       v-if="isAdmin === true"
       class="delete"
-      src="../assets/icons/delete.svg"
+      src="../../assets/icons/delete.svg"
       alt="Icon suppression"
     />
     <div class="commentUser">
       <div class="userPost">
-        <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
+        <img src="../../assets/img/profilUser.svg" alt="Photo de profil" />
         <p class="name">Nom <br />Prénom</p>
         <p class="time">Il y a 1h</p>
       </div>
@@ -78,7 +78,7 @@
       <div class="actionPost">
         <div class="comment">
           <img
-            src="../assets/icons/comment.svg"
+            src="../../assets/icons/comment.svg"
             id="button"
             alt="Icon commentaire"
           />
@@ -87,7 +87,7 @@
         <img
           v-if="isAdmin === true"
           class="delete"
-          src="../assets/icons/delete.svg"
+          src="../../assets/icons/delete.svg"
           alt="Icon suppression"
         />
       </div>
@@ -96,8 +96,8 @@
 </template>
 
 <script>
-import menuBottom from "../components/menu-bottom";
-import menuRight from "../components/menu-right";
+import menuBottom from "../../components/menu-bottom";
+import menuRight from "../../components/menu-right";
 
 export default {
   components: {

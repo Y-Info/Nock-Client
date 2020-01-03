@@ -71,7 +71,7 @@ export default {
           password: this.user.password
         });
         if (this.userToken !== null || this.userToken !== undefined) {
-          this.$router.push("/feed");
+          this.$router.push("/find-room");
         } else {
           this.$toasted.error("Erreur lors de la connection", {
             theme: "toasted-primary",

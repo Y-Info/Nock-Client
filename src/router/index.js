@@ -46,12 +46,13 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/inscription.vue")
   },
   {
-    path: "/feed",
-    name: "feed",
+    path: "/feed/:id",
+    name: "feed-id",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "../views/feed.vue")
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/feed/_id.vue")
   },
   {
     path: "/alert",

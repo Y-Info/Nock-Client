@@ -25,9 +25,9 @@
         <div class="button-container">
           <router-link
             class="block bg--blue uppercase pa-4 border-radius-full button"
-            to="/find-room"
+            to="/connect"
           >
-            Créer son espace
+            Rejoindre son espace
           </router-link>
         </div>
         <div class="mt-20">
