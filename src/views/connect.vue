@@ -47,7 +47,7 @@
 
 <script>
 import menuConnect from "../components/menu-connect";
-import apirequest from "../utils/apirequest";
+import axios from "axios";
 
 export default {
   components: {
@@ -60,31 +60,51 @@ export default {
         password: ""
       },
       users: null,
-      userToken: null
+      userToken: null,
+      statusCode: null
     };
   },
   methods: {
     checkForm() {
-      if (this.user.email !== "" && this.user.email !== "") {
-        apirequest("/auth/login", {
-          email: this.user.email,
-          password: this.user.password
-        });
-        if (this.userToken !== null || this.userToken !== undefined) {
-          this.$router.push("/feed");
+      if (this.user.email !== "") {
+        if (this.user.password !== "") {
+          axios
+            .post("https://nock-nock.herokuapp.com/api/auth/login", {
+              email: this.user.email,
+              password: this.user.password
+            })
+            .then(res => (this.userToken = res.data.token))
+            .catch(err => (this.statusCode = err.response.status));
+          setTimeout(() => {
+            this.goToFeed();
+          }, 500);
         } else {
-          this.$toasted.error("Erreur lors de la connection", {
+          this.$toasted.error("Le mot de passe ne peut pas être vide", {
             theme: "toasted-primary",
             position: "top-right",
             duration: 3000
           });
         }
       } else {
-        this.$toasted.error("Les champs sont vides", {
+        this.$toasted.error("L'email ne peut pas être vide", {
           theme: "toasted-primary",
           position: "top-right",
           duration: 3000
         });
+      }
+    },
+    goToFeed() {
+      if (
+        (this.statusCode !== 200 && this.userToken === null) ||
+        this.userToken === undefined
+      ) {
+        this.$toasted.error("Erreur lors de la connection", {
+          theme: "toasted-primary",
+          position: "top-right",
+          duration: 3000
+        });
+      } else {
+        this.$router.push("/feed");
       }
     }
   }

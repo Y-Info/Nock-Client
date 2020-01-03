@@ -25,14 +25,11 @@
         <input
           class="name"
           type="text"
-          name="name"
-          id="name"
+          name="lastname"
+          id="lastname"
           v-model="user.lastname"
           placeholder="Doe"
         />
-        <p class="errors" v-if="namesError">
-          Le nom ou prénom ne sont pas valides
-        </p>
       </div>
       <div class="field-wrap">
         <label for="email"
@@ -47,7 +44,6 @@
           min="0"
           placeholder="john.doe@email.com"
         />
-        <p class="errors" v-if="emailError">L'email n'est pas valide</p>
       </div>
       <div class="field-wrap">
         <label for="password"
@@ -70,15 +66,12 @@
         <input
           class="password"
           type="password"
-          name="password"
+          name="confirmPassword"
           id="confirmPassword"
           v-model="user.verifPassword"
           min="0"
           placeholder="*********"
         />
-        <p class="errors" v-if="passwordError">
-          Les mots de passe ne sont pas identiques
-        </p>
       </div>
       <div class="button-container">
         <button type="submit" class="buttonClick buttonBefore">
@@ -91,7 +84,7 @@
 
 <script>
 import menuConnect from "../components/menu-connect";
-import apirequest from "../utils/apirequest";
+import axios from "axios";
 
 export default {
   components: {
@@ -113,7 +106,7 @@ export default {
       if (this.password === this.verifPassword) {
         if (this.firstName !== "" || this.lastName !== "") {
           if (this.email !== "") {
-            apirequest("/auth/signup", {
+            axios.post("https://nock-nock.herokuapp.com/api/auth/signup", {
               firstName: this.user.firstName,
               lastName: this.user.lastName,
               email: this.user.email,
@@ -125,11 +118,7 @@ export default {
               position: "top-right",
               duration: 5000
             });
-          } else {
-            this.emailError = !this.emailError;
           }
-        } else {
-          this.namesError = !this.namesError;
         }
       }
     }
