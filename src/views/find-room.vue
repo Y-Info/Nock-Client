@@ -49,13 +49,16 @@
       </div>
       <p class="address-distance"></p>
     </div>
-    <div class="buttons-action fixed flex justify-between uppercase">
-      <router-link to="/create-room" v-if="!buildingFound">
+    <div class="buttons-action fixed  uppercase">
+      <div
+        v-if="!buildingFound && address != null && addresses.length == 1"
+        v-on:click="createRoom()"
+      >
         Créer un espace
-      </router-link>
-      <router-link to="/connect" v-if="buildingFound">
+      </div>
+      <div v-if="buildingFound" v-on:click="joinRoom()">
         Rejoindre un espace
-      </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -64,6 +67,7 @@
 import Map from "../components/Map";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 // import apirequest from "../utils/apirequest";
+import axios from "axios";
 
 export default {
   components: {
@@ -86,6 +90,7 @@ export default {
     async getAdress() {
       const results = await this.provider.search({ query: this.address });
       this.addresses = results;
+      this.buildingFound = false;
       if (results.length != 0) {
         this.center = [results[0].y, results[0].x];
         this.zoomMap = 18;
@@ -95,18 +100,58 @@ export default {
         this.zoomMap = 5;
         this.markerMap = false;
       }
+      if (results.length == 1) {
+        this.checkRoomExist(results.label);
+      }
     },
     goToAdresse(adresse) {
       this.addresses = [adresse];
       this.center = [adresse.y, adresse.x];
       this.markerMap = true;
       this.zoomMap = 18;
+      this.checkRoomExist(adresse.label);
+    },
+    checkRoomExist(adresse) {
+      axios
+        .get("https://nock-nock.herokuapp.com/api/building/filter/adress", {
+          address: adresse
+        })
+        .then(function(res) {
+          if (res.length != 0) {
+            this.addresses = [adresse];
+            this.buildingFound = true;
+          }
+        })
+        .catch(err => console.log(err.response));
+    },
+    joinRoom() {
+      console.log("join");
+      this.$router.push("/feed");
+    },
+    createRoom() {
+      axios
+        .post("https://nock-nock.herokuapp.com/api/building", {
+          address: this.addresses[0],
+          location: {
+            type: "Point",
+            coordinates: [this.addresses[0].x, this.addresses[0].y]
+          }
+        })
+        .then(function(res) {
+          if (res.length != 0) {
+            // this.addresses = [this.adresse];
+            //TODO: modification d'un building spécifique pour ajout de l'utilisateur courant
+            this.buildingFound = true;
+          }
+        })
+        .catch(err => console.log(err.response));
+      this.$router.push("/feed");
     }
   },
   computed: {
     evenAdresses: function() {
       return this.addresses.filter(function(adresse, index) {
-        return index < 5;
+        return index < 4;
       });
     }
   }
@@ -114,6 +159,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  overflow: hidden;
+}
 .topbar {
   display: flex;
   justify-content: center;
@@ -140,7 +188,7 @@ export default {
   -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   input {
-    font-size: 1.5em;
+    font-size: 1em;
   }
 }
 .search {
@@ -184,7 +232,7 @@ export default {
   font-weight: bold;
   width: 80%;
   text-align: center;
-  a {
+  div {
     padding: 10px 20px;
     border-radius: 5px;
     margin: 0 5px;
@@ -192,11 +240,11 @@ export default {
     -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
     box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   }
-  a:first-child {
+  div:first-child {
     background-color: white;
     color: $blue;
   }
-  a:nth-child(2) {
+  div:nth-child(2) {
     color: $white;
     background: $blue;
   }
