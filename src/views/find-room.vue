@@ -52,11 +52,11 @@
     <div class="buttons-action fixed  uppercase">
       <div
         v-if="!buildingFound && address != null && addresses.length == 1"
-        v-on:click="createRoom()"
+        v-on:click="actionRoom('create')"
       >
         Créer un espace
       </div>
-      <div v-if="buildingFound" v-on:click="joinRoom()">
+      <div v-if="buildingFound" v-on:click="actionRoom('join')">
         Rejoindre un espace
       </div>
     </div>
@@ -68,6 +68,7 @@ import Map from "../components/Map";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 // import apirequest from "../utils/apirequest";
 import axios from "axios";
+import store from "../store/index";
 
 export default {
   components: {
@@ -101,6 +102,7 @@ export default {
         this.markerMap = false;
       }
       if (results.length == 1) {
+        console.log(results);
         this.checkRoomExist(results.label);
       }
     },
@@ -112,40 +114,53 @@ export default {
       this.checkRoomExist(adresse.label);
     },
     checkRoomExist(adresse) {
+      console.log(adresse);
       axios
-        .get("https://nock-nock.herokuapp.com/api/building/filter/adress", {
+        .post("https://nock-nock.herokuapp.com/api/building/filter/adress", {
           address: adresse
         })
-        .then(function(res) {
-          if (res.length != 0) {
-            this.addresses = [adresse];
+        .then(res => {
+          if (res.data.length != 0) {
+            // this.addresses = [adresse];
             this.buildingFound = true;
+            console.log(res.data);
           }
         })
-        .catch(err => console.log(err.response));
+        .catch(err => console.log(err));
+    },
+    actionRoom(action) {
+      if (action == "join") {
+        this.joinRoom();
+      } else if (action == "create") {
+        this.createRoom();
+      }
     },
     joinRoom() {
       console.log("join");
+      //TODO: modification d'un building spécifique pour ajout de l'utilisateur courant
       this.$router.push("/feed");
     },
     createRoom() {
       axios
         .post("https://nock-nock.herokuapp.com/api/building", {
-          address: this.addresses[0],
+          address: this.addresses[0].label,
           location: {
             type: "Point",
             coordinates: [this.addresses[0].x, this.addresses[0].y]
           }
         })
-        .then(function(res) {
+        .then(res => {
           if (res.length != 0) {
             // this.addresses = [this.adresse];
-            //TODO: modification d'un building spécifique pour ajout de l'utilisateur courant
-            this.buildingFound = true;
+            if (store.getters.getConnectionInfos.user.id != "") {
+              this.$router.push("/feed");
+            } else {
+              this.$router.push("/connect");
+            }
           }
+          console.log(res);
         })
-        .catch(err => console.log(err.response));
-      this.$router.push("/feed");
+        .catch(err => console.log(err));
     }
   },
   computed: {
