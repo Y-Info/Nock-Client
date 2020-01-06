@@ -22,6 +22,7 @@
       <img class="search" src="../assets/icons/search.svg" alt="icon mail" />
       <input
         placeholder="Rechercher une adresse"
+        autocomplete="off"
         class="address text--yellow"
         type="text"
         name="address"
@@ -90,7 +91,8 @@ export default {
       zoomMap: 5,
       markerMap: false,
       buildingFound: false,
-      errorBuildingFound: false
+      errorBuildingFound: false,
+      buildingID: null
     };
   },
   methods: {
@@ -125,15 +127,16 @@ export default {
         })
         .then(res => {
           if (res.data.length !== 0) {
+            this.buildingID = res.data[0]._id;
             this.buildingFound = true;
           }
         })
-        .catch(err => {
-          console.log(err);
+        .catch(() => {
           this.errorBuildingFound = true;
         });
     },
     actionRoom(action) {
+      console.log(store.getters.getConnectionInfos.user.id);
       if (action === "join") {
         this.joinRoom();
       } else if (action === "create") {
@@ -142,7 +145,31 @@ export default {
     },
     joinRoom() {
       //TODO: modification d'un building spécifique pour ajout de l'utilisateur courant
-      this.$router.push("/feed");
+      console.log(store.getters.getConnectionInfos.user.id);
+      if (store.getters.getConnectionInfos.user.id !== "") {
+        var config = {
+          headers: {
+            Authorization:
+              "Bearer " + store.getters.getConnectionInfos.user.token
+          }
+        };
+        axios
+          .put(
+            "https://nock-nock.herokuapp.com/api/building/addUser/" +
+              this.buildingID,
+            {
+              userId: store.getters.getConnectionInfos.user.id
+            },
+            config
+          )
+          .then(res => {
+            console.log(res);
+            this.$router.push("/feed");
+          })
+          .catch(err => console.log(err));
+      } else {
+        this.$router.push("/connect");
+      }
     },
     createRoom() {
       axios
@@ -155,7 +182,7 @@ export default {
         })
         .then(res => {
           if (res.length !== 0) {
-            if (store.getters.getConnectionInfos.user.id !== "") {
+            if (store.getters.getConnectionInfos.user.id !== null) {
               this.$router.push("/feed");
             } else {
               this.$router.push("/connect");
