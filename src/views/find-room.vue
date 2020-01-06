@@ -51,7 +51,12 @@
     </div>
     <div class="buttons-action fixed  uppercase">
       <div
-        v-if="!buildingFound && address != null && addresses.length == 1"
+        v-if="
+          !buildingFound &&
+            !errorBuildingFound &&
+            address !== null &&
+            addresses.length === 1
+        "
         v-on:click="actionRoom('create')"
       >
         Créer un espace
@@ -84,7 +89,8 @@ export default {
       center: [],
       zoomMap: 5,
       markerMap: false,
-      buildingFound: false
+      buildingFound: false,
+      errorBuildingFound: false
     };
   },
   methods: {
@@ -92,7 +98,7 @@ export default {
       const results = await this.provider.search({ query: this.address });
       this.addresses = results;
       this.buildingFound = false;
-      if (results.length != 0) {
+      if (results.length !== 0) {
         this.center = [results[0].y, results[0].x];
         this.zoomMap = 18;
         this.markerMap = true;
@@ -101,8 +107,7 @@ export default {
         this.zoomMap = 5;
         this.markerMap = false;
       }
-      if (results.length == 1) {
-        console.log(results);
+      if (results.length === 1) {
         this.checkRoomExist(results.label);
       }
     },
@@ -114,29 +119,28 @@ export default {
       this.checkRoomExist(adresse.label);
     },
     checkRoomExist(adresse) {
-      console.log(adresse);
       axios
-        .post("https://nock-nock.herokuapp.com/api/building/filter/adress", {
+        .post("https://nock-nock.herokuapp.com/api/building/filter/address", {
           address: adresse
         })
         .then(res => {
-          if (res.data.length != 0) {
-            // this.addresses = [adresse];
+          if (res.data.length !== 0) {
             this.buildingFound = true;
-            console.log(res.data);
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log(err);
+          this.errorBuildingFound = true;
+        });
     },
     actionRoom(action) {
-      if (action == "join") {
+      if (action === "join") {
         this.joinRoom();
-      } else if (action == "create") {
+      } else if (action === "create") {
         this.createRoom();
       }
     },
     joinRoom() {
-      console.log("join");
       //TODO: modification d'un building spécifique pour ajout de l'utilisateur courant
       this.$router.push("/feed");
     },
@@ -150,15 +154,13 @@ export default {
           }
         })
         .then(res => {
-          if (res.length != 0) {
-            // this.addresses = [this.adresse];
-            if (store.getters.getConnectionInfos.user.id != "") {
+          if (res.length !== 0) {
+            if (store.getters.getConnectionInfos.user.id !== "") {
               this.$router.push("/feed");
             } else {
               this.$router.push("/connect");
             }
           }
-          console.log(res);
         })
         .catch(err => console.log(err));
     }
