@@ -1,7 +1,9 @@
 <template>
   <div>
-    <menu-connect route="/validate-adress" />
-    <form id="connect" @submit="checkForm" action="/" method="post">
+    <menu-connect route="/" />
+    {{ users }}
+    <h2>Connection</h2>
+    <form id="connect" @submit.prevent="checkForm" method="post">
       <div class="field-wrap">
         <label for="email"
           ><img src="../assets/icons/mailIcon.svg" alt="icon mail"
@@ -11,56 +13,123 @@
           type="email"
           name="email"
           id="email"
-          v-model="email"
+          v-model="user.email"
+          placeholder="Entrez votre email"
         />
       </div>
 
       <div class="field-wrap">
-        <label for="password"
-          ><img src="../assets/icons/lock-icon.svg" alt="icon mail"
-        /></label>
+        <label for="password">
+          <img src="../assets/icons/lock-icon.svg" alt="icon mail" />
+        </label>
         <input
           class="password"
           type="password"
           name="password"
           id="password"
-          v-model="password"
+          v-model="user.password"
           min="0"
+          placeholder="Entrez votre mot de passe"
         />
+        <router-link class="mdp" to="/">Mot de passe oublié ?</router-link>
       </div>
-      <router-link class="mdp" to="/">Mot de passe oublié ?</router-link>
+      <div class="button-container">
+        <button type="submit" class="buttonClick buttonBefore">
+          Se connecter
+        </button>
+        <router-link class="buttonClick buttonAfter" to="/inscription">
+          S'inscrire
+        </router-link>
+      </div>
     </form>
-
-    <div class="button-container">
-      <router-link class="buttonClick buttonBefore" to="/feed"
-        >Se connecter</router-link
-      >
-      <router-link class="buttonClick buttonAfter" to="/inscription"
-        >S'inscrire</router-link
-      >
-    </div>
   </div>
 </template>
 
 <script>
 import menuConnect from "../components/menu-connect";
+import axios from "axios";
+
 export default {
   components: {
     menuConnect
+  },
+  data() {
+    return {
+      user: {
+        email: "",
+        password: ""
+      },
+      users: null,
+      userToken: null,
+      statusCode: null
+    };
+  },
+  methods: {
+    checkForm() {
+      if (this.user.email !== "") {
+        if (this.user.password !== "") {
+          axios
+            .post("https://nock-nock.herokuapp.com/api/auth/login", {
+              email: this.user.email,
+              password: this.user.password
+            })
+            .then(res => (this.userToken = res.data.token))
+            .catch(err => (this.statusCode = err.response.status));
+          setTimeout(() => {
+            this.goToFeed();
+          }, 500);
+        } else {
+          this.$toasted.error("Le mot de passe ne peut pas être vide", {
+            theme: "toasted-primary",
+            position: "top-right",
+            duration: 3000
+          });
+        }
+      } else {
+        this.$toasted.error("L'email ne peut pas être vide", {
+          theme: "toasted-primary",
+          position: "top-right",
+          duration: 3000
+        });
+      }
+    },
+    goToFeed() {
+      if (
+        (this.statusCode !== 200 && this.userToken === null) ||
+        this.userToken === undefined
+      ) {
+        this.$toasted.error("Erreur lors de la connection", {
+          theme: "toasted-primary",
+          position: "top-right",
+          duration: 3000
+        });
+      } else {
+        this.$router.push("/feed");
+      }
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+h2 {
+  margin-top: 70px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #ffba00;
+  margin-left: 20px;
+}
 .button-container {
-  font-family: Montserrat B, sans-serif;
   text-align: center;
   margin-top: 140px;
   font-size: 10px;
-  text-transform: uppercase;
-  .buttonClick {
+  font-weight: bold;
+  button,
+  .buttonAfter {
+    text-transform: uppercase;
+    width: 95%;
     display: block;
-    margin: 20px 10px 10px 10px;
+    margin: 20px 10px 10px;
     padding: 18px 40px;
     border-radius: 5px;
     text-decoration: none;
@@ -78,7 +147,7 @@ export default {
   }
 }
 form {
-  margin-top: 125px;
+  margin-top: 80px;
   display: block;
   position: relative;
   .mdp {
@@ -88,7 +157,6 @@ form {
     font-size: 10px;
     text-decoration: none;
     color: #ffba00;
-    font-family: Montserrat B, sans-serif;
   }
   .field-wrap {
     position: relative;
@@ -101,7 +169,6 @@ form {
       width: 90%;
       padding: 0 0 15px 45px;
       font-size: 14px;
-      font-family: Montserrat B, sans-serif;
       color: #2e3460;
     }
     label {

@@ -4,12 +4,32 @@
 
     <h2>Création du compte</h2>
 
-    <form id="connect" @submit="checkForm" action="/" method="post">
+    <form id="connect" @submit.prevent="sendForm" action="/" method="post">
       <div class="field-wrap">
-        <label for="name"
+        <label for="firstname"
           ><img src="../assets/icons/connectPeople.svg" alt="icon people"
         /></label>
-        <input class="name" type="text" name="name" id="name" v-model="name" />
+        <input
+          class="name"
+          type="text"
+          name="name"
+          id="name"
+          v-model="user.firstname"
+          placeholder="John"
+        />
+      </div>
+      <div class="field-wrap">
+        <label for="lastname"
+          ><img src="../assets/icons/connectPeople.svg" alt="icon people"
+        /></label>
+        <input
+          class="name"
+          type="text"
+          name="lastname"
+          id="lastname"
+          v-model="user.lastname"
+          placeholder="Doe"
+        />
       </div>
       <div class="field-wrap">
         <label for="email"
@@ -20,8 +40,9 @@
           type="email"
           name="email"
           id="email"
-          v-model="email"
+          v-model="user.email"
           min="0"
+          placeholder="john.doe@email.com"
         />
       </div>
       <div class="field-wrap">
@@ -33,8 +54,9 @@
           type="password"
           name="password"
           id="password"
-          v-model="password"
+          v-model="user.password"
           min="0"
+          placeholder="*********"
         />
       </div>
       <div class="field-wrap">
@@ -44,28 +66,62 @@
         <input
           class="password"
           type="password"
-          name="password"
+          name="confirmPassword"
           id="confirmPassword"
-          v-model="password"
+          v-model="user.verifPassword"
           min="0"
+          placeholder="*********"
         />
       </div>
+      <div class="button-container">
+        <button type="submit" class="buttonClick buttonBefore">
+          Confirmation
+        </button>
+      </div>
     </form>
-
-    <div class="button-container">
-      <router-link class="buttonClick buttonBefore" to="/validate-adress"
-        >Confirmation</router-link
-      >
-    </div>
   </div>
 </template>
 
 <script>
 import menuConnect from "../components/menu-connect";
+import axios from "axios";
 
 export default {
   components: {
     menuConnect
+  },
+  data() {
+    return {
+      user: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        verifPassword: ""
+      }
+    };
+  },
+  methods: {
+    sendForm() {
+      if (this.password === this.verifPassword) {
+        if (this.firstName !== "" || this.lastName !== "") {
+          if (this.email !== "") {
+            axios.post("https://nock-nock.herokuapp.com/api/auth/signup", {
+              firstName: this.user.firstName,
+              lastName: this.user.lastName,
+              email: this.user.email,
+              password: this.user.password
+            });
+            this.$router.push("/connect");
+            this.$toasted.show("Compte créer", {
+              theme: "toasted-primary",
+              position: "top-right",
+              duration: 5000
+            });
+          }
+        }
+      }
+    }
   }
 };
 </script>
@@ -83,13 +139,14 @@ h2 {
   text-align: center;
   margin-top: 70px;
   font-size: 10px;
-  text-transform: uppercase;
 
   .buttonClick {
+    width: 95%;
     display: block;
     margin: 20px 10px 10px 10px;
     padding: 18px 40px;
     border-radius: 5px;
+    text-transform: uppercase;
     text-decoration: none;
 
     -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
@@ -141,10 +198,14 @@ form {
       top: -10px;
       color: rgba($white, 0.5);
       transition: all 0.25s ease;
-      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
       pointer-events: none;
       font-size: 22px;
     }
   }
+}
+.errors {
+  font-size: 12px;
+  color: crimson;
 }
 </style>
