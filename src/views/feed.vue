@@ -6,7 +6,9 @@
       <div v-for="(post, index) in posts" :key="index" class="content">
         <div class="userPost">
           <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
-          <p class="name">{{ post.author.lastName }} <br />{{ post.author.firstName }}</p>
+          <p class="name">
+            {{ post.author.lastName }} <br />{{ post.author.firstName }}
+          </p>
           <p class="time">Il y a 1h</p>
         </div>
         <h3>{{ post.name }}</h3>
@@ -14,7 +16,7 @@
           {{ post.content }}
         </p>
         <div class="actionPost">
-          <div class="comment" @click="isComments = !isComments">
+          <div class="comment" @click="post.isComments = !post.isComments">
             <img
               src="../assets/icons/comment.svg"
               id="button"
@@ -29,26 +31,25 @@
             alt="Icon suppression"
           />
         </div>
-      </div>
-      <div v-if="isComments" class="commentUser">
-        <div class="userPost">
-          <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
-          <p class="name">Nom <br />Prénom</p>
-          <p class="time">A commenté il y a 1h</p>
-        </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
-        <div class="actionPost">
-          <img
-            v-if="isAdmin === true"
-            class="delete"
-            src="../assets/icons/delete.svg"
-            alt="Icon suppression"
-          />
+        <div v-if="post.isComments">
+          <div class="commentUser" v-for="(comment, index) in post.comments" :key="index">
+            <div class="userPost">
+              <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
+              <p class="name">{{ comment.author.lastName }} <br />{{ comment.author.firstName }}</p>
+              <p class="time">A commenté il y a 1h</p>
+            </div>
+            <p>
+              {{ comment.content }}
+            </p>
+            <div class="actionPost">
+              <img
+                v-if="isAdmin === true"
+                class="delete"
+                src="../assets/icons/delete.svg"
+                alt="Icon suppression"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -67,9 +68,8 @@ export default {
   data() {
     return {
       isAdmin: true,
-      isComments: false,
       building: {
-        name: 'Ynov le S'
+        name: "Ynov le S"
       },
       posts: [
         {
@@ -78,7 +78,32 @@ export default {
             firstName: "Yes",
             lastName: "Myfriend"
           },
-          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad m"
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad m",
+          isComments: false,
+          comments: [
+            {
+              author: {
+                firstName: "Yes",
+                lastName: "Myfriend"
+              },
+              content: "Ouais super idée !"
+            },
+            {
+              author: {
+                firstName: "Yes",
+                lastName: "Myfriend"
+              },
+              content: "Ouais super idée !"
+            },
+            {
+              author: {
+                firstName: "Yes",
+                lastName: "Myfriend"
+              },
+              content: "Ouais super idée !"
+            }
+          ]
         },
         {
           name: "Mon chat a volé les poubelles",
@@ -86,7 +111,18 @@ export default {
             firstName: "Jesuis",
             lastName: "leboss"
           },
-          content: "Il faut essayé de retrouver mon chat qui a volé les poubelles de l'immeuble."
+          content:
+            "Il faut essayé de retrouver mon chat qui a volé les poubelles de l'immeuble.",
+          isComments: false,
+          comments: [
+            {
+              author: {
+                firstName: "Yes",
+                lastName: "Myfriend"
+              },
+              content: "J'ai retrouvé le chat !"
+            }
+          ]
         },
         {
           name: "Poubelles trouvées",
@@ -94,7 +130,17 @@ export default {
             firstName: "Lalala",
             lastName: "Okok"
           },
-          content: "Lorem ipsum dolor sit ame Ut enim ad m"
+          content: "Lorem ipsum dolor sit ame Ut enim ad m",
+          isComments: false,
+          comments: [
+            {
+              author: {
+                firstName: "Yes",
+                lastName: "Myfriend"
+              },
+              content: "Ouais super idée !"
+            }
+          ]
         },
         {
           name: "Poubelles trouvées",
@@ -102,7 +148,17 @@ export default {
             firstName: "Lalala",
             lastName: "Okok"
           },
-          content: "Lorem ipsum dolor sit ame Ut enim ad m"
+          content: "Lorem ipsum dolor sit ame Ut enim ad m",
+          isComments: false,
+          comments: [
+            {
+              author: {
+                firstName: "Yes",
+                lastName: "Myfriend"
+              },
+              content: "Ouais super idée !"
+            }
+          ]
         },
         {
           name: "Poubelles trouvées",
@@ -110,7 +166,17 @@ export default {
             firstName: "Lalala",
             lastName: "Okok"
           },
-          content: "Lorem ipsum dolor sit ame Ut enim ad m"
+          content: "Lorem ipsum dolor sit ame Ut enim ad m",
+          isComments: false,
+          comments: [
+            {
+              author: {
+                firstName: "Yes",
+                lastName: "Myfriend"
+              },
+              content: "Ouais super idée !"
+            }
+          ]
         }
       ]
     };
@@ -213,16 +279,15 @@ p {
   }
 }
 
+.commentUser:nth-child(1) {
+  margin-top: 10px;
+}
+
 .commentUser {
-  -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
+  border-top: #ccc 1px solid;
+  padding: 20px 0;
   background: #fff;
-  margin-top: -5px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  padding: 20px;
+  width: 100%;
 
   img {
     display: inline-block;
@@ -257,6 +322,7 @@ p {
     vertical-align: top;
     box-sizing: border-box;
     width: 18px;
+    height: 18px;
   }
 }
 </style>
