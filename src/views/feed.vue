@@ -1,23 +1,20 @@
 <template>
   <div>
     <div>
-      <menuRight />
+      <menu-right :title="building.name" />
       <menu-bottom />
-      <div class="content">
+      <div v-for="(post, index) in posts" :key="index" class="content">
         <div class="userPost">
           <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
-          <p class="name">Nom <br />Prénom</p>
+          <p class="name">{{ post.author.lastName }} <br />{{ post.author.firstName }}</p>
           <p class="time">Il y a 1h</p>
         </div>
-        <h3>Titre du post</h3>
+        <h3>{{ post.name }}</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          {{ post.content }}
         </p>
         <div class="actionPost">
-          <div class="comment" @click="comments = !comments">
+          <div class="comment" @click="isComments = !isComments">
             <img
               src="../assets/icons/comment.svg"
               id="button"
@@ -33,7 +30,7 @@
           />
         </div>
       </div>
-      <div v-if="comments" class="commentUser">
+      <div v-if="isComments" class="commentUser">
         <div class="userPost">
           <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
           <p class="name">Nom <br />Prénom</p>
@@ -70,7 +67,52 @@ export default {
   data() {
     return {
       isAdmin: true,
-      comments: false
+      isComments: false,
+      building: {
+        name: 'Ynov le S'
+      },
+      posts: [
+        {
+          name: "Mon poste",
+          author: {
+            firstName: "Yes",
+            lastName: "Myfriend"
+          },
+          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad m"
+        },
+        {
+          name: "Mon chat a volé les poubelles",
+          author: {
+            firstName: "Jesuis",
+            lastName: "leboss"
+          },
+          content: "Il faut essayé de retrouver mon chat qui a volé les poubelles de l'immeuble."
+        },
+        {
+          name: "Poubelles trouvées",
+          author: {
+            firstName: "Lalala",
+            lastName: "Okok"
+          },
+          content: "Lorem ipsum dolor sit ame Ut enim ad m"
+        },
+        {
+          name: "Poubelles trouvées",
+          author: {
+            firstName: "Lalala",
+            lastName: "Okok"
+          },
+          content: "Lorem ipsum dolor sit ame Ut enim ad m"
+        },
+        {
+          name: "Poubelles trouvées",
+          author: {
+            firstName: "Lalala",
+            lastName: "Okok"
+          },
+          content: "Lorem ipsum dolor sit ame Ut enim ad m"
+        }
+      ]
     };
   }
 };
@@ -91,7 +133,7 @@ p {
   background-color: #ffffff;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50px;
+  margin-top: 20px;
   padding: 20px;
 
   -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);

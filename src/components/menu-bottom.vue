@@ -36,6 +36,7 @@
 
 <style lang="scss" scoped>
 .menuBottom {
+  z-index: 30;
   position: fixed;
   bottom: 0;
   display: flex;
