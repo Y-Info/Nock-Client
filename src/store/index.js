@@ -8,7 +8,8 @@ export default new Vuex.Store({
     user: {
       id: null,
       token: null,
-      isAdmin: false
+      isAdmin: false,
+      buildingId: null
     }
   },
   mutations: {
@@ -16,6 +17,7 @@ export default new Vuex.Store({
       state.user.id = user.id;
       state.user.token = user.token;
       state.user.isAdmin = user.isAdmin;
+      state.user.buildingId = user.buildingId;
     }
   },
   getters: {
