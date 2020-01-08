@@ -4,7 +4,7 @@
 
     <h2>Création du compte</h2>
 
-    <form id="connect" @submit.prevent="sendForm" action="/" method="post">
+    <form id="connect" @submit.prevent="sendForm">
       <div class="field-wrap">
         <label for="firstname"
           ><img src="../assets/icons/connectPeople.svg" alt="icon people"
@@ -14,7 +14,7 @@
           type="text"
           name="name"
           id="name"
-          v-model="user.firstname"
+          v-model="user.firstName"
           placeholder="John"
         />
       </div>
@@ -27,7 +27,7 @@
           type="text"
           name="lastname"
           id="lastname"
-          v-model="user.lastname"
+          v-model="user.lastName"
           placeholder="Doe"
         />
       </div>
@@ -106,18 +106,21 @@ export default {
       if (this.password === this.verifPassword) {
         if (this.firstName !== "" || this.lastName !== "") {
           if (this.email !== "") {
-            axios.post("https://nock-nock.herokuapp.com/api/auth/signup", {
-              firstName: this.user.firstName,
-              lastName: this.user.lastName,
-              email: this.user.email,
-              password: this.user.password
-            });
-            this.$router.push("/connect");
-            this.$toasted.show("Compte créer", {
-              theme: "toasted-primary",
-              position: "top-right",
-              duration: 5000
-            });
+            axios
+              .post("https://nock-nock.herokuapp.com/api/auth/signup", {
+                firstName: this.user.firstName,
+                lastName: this.user.lastName,
+                email: this.user.email,
+                password: this.user.password
+              })
+              .then(
+                this.$router.push("/connect"),
+                this.$toasted.show("Compte créé", {
+                  theme: "toasted-primary",
+                  position: "top-right",
+                  duration: 5000
+                })
+              );
           }
         }
       }

@@ -83,6 +83,7 @@ export default {
               this.userToken = res.data.token;
               store.state.user.token = res.data.token;
               store.state.user.id = res.data.userId;
+              store.state.user.buildingId = res.data.buildingId;
             })
             .catch(err => (this.statusCode = err.response.status));
           setTimeout(() => {

@@ -22,7 +22,7 @@
               id="button"
               alt="Icon commentaire"
             />
-            <span class="numberComment">214</span>
+            <span class="numberComment">{{ post.comments.length }}</span>
           </div>
           <img
             v-if="isAdmin === true"
@@ -32,10 +32,18 @@
           />
         </div>
         <div v-if="post.isComments">
-          <div class="commentUser" v-for="(comment, index) in post.comments" :key="index">
+          <div
+            class="commentUser"
+            v-for="(comment, index) in post.comments"
+            :key="index"
+          >
             <div class="userPost">
               <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
-              <p class="name">{{ comment.author.lastName }} <br />{{ comment.author.firstName }}</p>
+              <p class="name">
+                {{ comment.author.lastName }} <br />{{
+                  comment.author.firstName
+                }}
+              </p>
               <p class="time">A commenté il y a 1h</p>
             </div>
             <p>
@@ -121,6 +129,13 @@ export default {
                 lastName: "Myfriend"
               },
               content: "J'ai retrouvé le chat !"
+            },
+            {
+              author: {
+                firstName: "Yes",
+                lastName: "Myfriend"
+              },
+              content: "J'ai trouvé un sac poubelle"
             }
           ]
         },
@@ -191,6 +206,10 @@ p {
 
 .z-index-1 {
   z-index: -1;
+}
+
+.content:last-child {
+  margin-bottom: 115px;
 }
 
 .content {
