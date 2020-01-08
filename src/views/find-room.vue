@@ -131,13 +131,16 @@ export default {
             this.buildingFound = true;
           }
         })
-        .catch(() => {
+        .catch(err => {
           this.errorBuildingFound = true;
-          this.$toasted.error("Erreur lors de l'appelle pour recupérer les adresses : " + err, {
-            theme: "toasted-primary",
-            position: "top-right",
-            duration: 3000
-          });
+          this.$toasted.error(
+            "Erreur lors de l'appelle pour recupérer les adresses : " + err,
+            {
+              theme: "toasted-primary",
+              position: "top-right",
+              duration: 3000
+            }
+          );
         });
     },
     actionRoom(action) {
@@ -169,15 +172,18 @@ export default {
           )
           .then(res => {
             console.log(res);
-            this.$router.push("/feed"); 
+            this.$router.push("/feed");
           })
-          .catch((err) => {
+          .catch(err => {
             console.log(err);
-            this.$toasted.error("Erreur lors de l'ajout d'un user au building : " + err, {
-              theme: "toasted-primary",
-              position: "top-right",
-              duration: 3000
-            });
+            this.$toasted.error(
+              "Erreur lors de l'ajout d'un user au building : " + err,
+              {
+                theme: "toasted-primary",
+                position: "top-right",
+                duration: 3000
+              }
+            );
           });
       } else {
         this.$router.push("/connect");
@@ -201,13 +207,16 @@ export default {
             }
           }
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
-          this.$toasted.error("Erreur lors de l'ajout d'un building en base de donnée : " + err, {
-            theme: "toasted-primary",
-            position: "top-right",
-            duration: 3000
-          });
+          this.$toasted.error(
+            "Erreur lors de l'ajout d'un building en base de donnée : " + err,
+            {
+              theme: "toasted-primary",
+              position: "top-right",
+              duration: 3000
+            }
+          );
         });
     }
   },
