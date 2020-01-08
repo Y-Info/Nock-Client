@@ -55,7 +55,10 @@ export default {
     menuConnect
   },
   created() {
-    if (store.getters.getConnectionInfos.user.id !== null) {
+    if (
+      store.getters.getConnectionInfos.user.id !== null &&
+      store.getters.getConnectionInfos.user.buildingId !== null
+    ) {
       this.$router.push("/feed");
     }
   },
@@ -115,7 +118,12 @@ export default {
           duration: 3000
         });
       } else {
-        this.$router.push("/feed");
+        console.log(store.state.user.buildingId);
+        if (store.state.user.buildingId !== null) {
+          this.$router.push("/find-room");
+        } else {
+          this.$router.push("/feed");
+        }
       }
     }
   }
@@ -189,7 +197,7 @@ form {
       top: -10px;
       color: rgba($white, 0.5);
       transition: all 0.25s ease;
-      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
       pointer-events: none;
       font-size: 22px;
     }

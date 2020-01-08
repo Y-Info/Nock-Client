@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <form id="connect" @submit="checkForm" action="/" method="post">
       <div class="field-wrap">
         <label for="name"
@@ -56,7 +55,6 @@
     </div>
   </div>
 </template>
-
 
 <style lang="scss" scoped>
 h2 {

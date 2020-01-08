@@ -1,10 +1,10 @@
 <template>
   <div>
-    <menuRetourFeed route="/feed" :title="title" :txtButton="txtButton"/>
-    <Event v-if="statutAdd==STATUT_EVENT" />
-    <Post v-if="statutAdd==STATUT_POST" />
-    <Survey v-if="statutAdd==STATUT_SURVEY" />
-    <buttonCreate :txtButton="txtButton"/>
+    <menuRetourFeed route="/feed" :title="title" :txtButton="txtButton" />
+    <Event v-if="statutAdd == STATUT_EVENT" />
+    <Post v-if="statutAdd == STATUT_POST" />
+    <Survey v-if="statutAdd == STATUT_SURVEY" />
+    <buttonCreate :txtButton="txtButton" />
     <menuBottom />
   </div>
 </template>
@@ -28,15 +28,15 @@ export default {
   },
   data() {
     return {
-        STATUT_EVENT: 1,
-        STATUT_SURVEY: 2,
-        STATUT_POST: 3,
-    }
+      STATUT_EVENT: 1,
+      STATUT_SURVEY: 2,
+      STATUT_POST: 3
+    };
   },
   props: {
-      statutAdd: Number,
-      title: String,
-      txtButton: String
+    statutAdd: Number,
+    title: String,
+    txtButton: String
   }
 };
 </script>

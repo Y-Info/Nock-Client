@@ -72,7 +72,6 @@
 <script>
 import Map from "../components/Map";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
-// import apirequest from "../utils/apirequest";
 import axios from "axios";
 import store from "../store/index";
 
@@ -172,7 +171,16 @@ export default {
           )
           .then(res => {
             console.log(res);
-            this.$router.push("/feed");
+            console.log(store.getters.getConnectionInfos.user.id);
+            console.log(store.getters.getConnectionInfos.user.buildingId);
+            console.log(store.getters.getConnectionInfos.user.token);
+            if (res.length !== 0) {
+              if (store.getters.getConnectionInfos.user.id !== null) {
+                this.$router.push("/feed");
+              } else {
+                this.$router.push("/connect");
+              }
+            }
           })
           .catch(err => {
             console.log(err);

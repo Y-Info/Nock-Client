@@ -1,8 +1,8 @@
 <template>
   <div>
-    <router-link :to="route">
+    <a @click="goBack">
       <img class="arrow" src="../assets/icons/arrow.svg" alt="flèche retour" />
-    </router-link>
+    </a>
 
     <img class="logo" src="../assets/icons/logo.svg" alt="Nock logo" />
   </div>
@@ -12,6 +12,11 @@
 export default {
   props: {
     route: String
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    }
   }
 };
 </script>

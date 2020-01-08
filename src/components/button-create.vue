@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="button-container">
-      <router-link class="buttonClick buttonBefore" to="/feed">Créer {{ txtButton }}</router-link>
+      <router-link class="buttonClick buttonBefore" to="/feed"
+        >Créer {{ txtButton }}</router-link
+      >
     </div>
   </div>
 </template>

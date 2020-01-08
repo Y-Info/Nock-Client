@@ -3,7 +3,9 @@
     <router-link :to="route">
       <img class="arrow" src="../assets/icons/arrow.svg" alt="flèche retour" />
     </router-link>
-    <div class="title-container"><h2>Création de votre {{ title }}</h2></div>
+    <div class="title-container">
+      <h2>Création de votre {{ title }}</h2>
+    </div>
   </div>
 </template>
 
@@ -11,13 +13,13 @@
 export default {
   props: {
     route: String,
-    title: String,
+    title: String
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.title-container{
+.title-container {
   height: 10vh;
   width: 70%;
   text-align: center;

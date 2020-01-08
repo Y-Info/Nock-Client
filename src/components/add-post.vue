@@ -3,15 +3,27 @@
     <form id="createSurvey" @submit="checkForm" action="/" method="post">
       <div class="field-wrap">
         <label for="question">Titre*</label>
-        <input class="titre" type="text" name="titre" id="titre" v-model="titre" />
+        <input
+          class="titre"
+          type="text"
+          name="titre"
+          id="titre"
+          v-model="titre"
+        />
       </div>
       <div class="field-wrap">
         <label for="question">Description*</label>
-        <textarea class="question" id="question" row="20" colus="15" v-model="question"></textarea>
+        <textarea
+          class="question"
+          id="question"
+          row="20"
+          colus="15"
+          v-model="question"
+        ></textarea>
       </div>
       <div class="radioContainer">
         <!--<div class="customRadio"></div>-->
-        <input class="checkbox" type="checkbox">
+        <input class="checkbox" type="checkbox" />
         <p class="txtUrgent">URGENT</p>
       </div>
     </form>
@@ -20,7 +32,7 @@
 
 <style lang="scss" scoped>
 .button-container {
-  margin-top: 25vh!important;
+  margin-top: 25vh !important;
 }
 h2 {
   margin-top: 70px;
@@ -30,16 +42,16 @@ h2 {
   margin-left: 20px;
 }
 
-.checkbox{              /* A retirer */
+.checkbox {
+  /* A retirer */
   display: inline-block;
 }
 
-.radioContainer{
+.radioContainer {
+  margin: auto;
+  width: 90%;
 
-margin: auto;
-width: 90%;
-
-/*.customRadio{
+  /*.customRadio{
    border: #EFEFEF 2px solid;
    border-radius: 100%;
    margin-right: 15px;
@@ -48,12 +60,12 @@ width: 90%;
    display: inline-block;
 }*/
 
-.txtUrgent{
-  display: inline-block;
-  font-family: Montserrat B, sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-}
+  .txtUrgent {
+    display: inline-block;
+    font-family: Montserrat B, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 }
 
 form {
@@ -78,7 +90,7 @@ form {
 
     input {
       margin: 0 auto;
-      border: #EFEFEF 2px solid;
+      border: #efefef 2px solid;
       width: 90%;
       padding: 0 0 20px 0px;
       font-size: 14px;
@@ -89,7 +101,7 @@ form {
 
     textarea {
       margin: 0 auto;
-      border: #EFEFEF 2px solid;
+      border: #efefef 2px solid;
       width: 90%;
       padding: 0 0 90px 0px;
       font-size: 14px;

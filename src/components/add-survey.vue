@@ -3,38 +3,48 @@
     <form id="createSurvey" @submit="checkForm" action="/" method="post">
       <div class="field-wrap">
         <label for="question">Posez votre question : *</label>
-        <input class="question" type="text" name="question" id="question" v-model="question" />
+        <input
+          class="question"
+          type="text"
+          name="question"
+          id="question"
+          v-model="question"
+        />
       </div>
     </form>
     <div class="responseContainer">
       <div class="customRadio"></div>
-      <input class="response" type="text" name="response" id="response" v-model="response" />
+      <input
+        class="response"
+        type="text"
+        name="response"
+        id="response"
+        v-model="response"
+      />
       <div class="responsePlusContainer"></div>
-      
     </div>
-    
   </div>
 </template>
 
 <style lang="scss" scoped>
-.responsePlus{
+.responsePlus {
   font-size: 6vh;
 }
-.responseContainer{
+.responseContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.customRadio{
-   border: #EFEFEF 2px solid;
-   border-radius: 100%;
-   margin-right: 15px;
-   width: 3vh;
-   height: 3vh;
+.customRadio {
+  border: #efefef 2px solid;
+  border-radius: 100%;
+  margin-right: 15px;
+  width: 3vh;
+  height: 3vh;
 }
-.response{
+.response {
   background-color: #f3f3f3;
-  color: #EFEFEF;
+  color: #efefef;
   font-family: "Montserrat", sans-serif;
   border: none;
   border-radius: 25px;
@@ -73,7 +83,7 @@ form {
 
     input {
       margin: 0 auto;
-      border: #EFEFEF 2px solid;
+      border: #efefef 2px solid;
       width: 90%;
       padding: 0 0 20px 0px;
       font-size: 14px;
