@@ -4,7 +4,6 @@
     <Event v-if="statutAdd==STATUT_EVENT" />
     <Post v-if="statutAdd==STATUT_POST" />
     <Survey v-if="statutAdd==STATUT_SURVEY" />
-    <buttonCreate :txtButton="txtButton"/>
     <menuBottom />
   </div>
 </template>
@@ -14,7 +13,6 @@ import Event from "../components/add-event";
 import Post from "../components/add-post";
 import Survey from "../components/add-survey";
 import menuRetourFeed from "../components/menu-retour-feed";
-import buttonCreate from "../components/button-create";
 import menuBottom from "../components/menu-bottom";
 
 export default {
@@ -23,7 +21,6 @@ export default {
     Post,
     Survey,
     menuRetourFeed,
-    buttonCreate,
     menuBottom
   },
   data() {
