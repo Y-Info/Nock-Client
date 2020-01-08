@@ -56,8 +56,7 @@ export default {
   },
   created() {
     if (
-      store.getters.getConnectionInfos.user.id !== null &&
-      store.getters.getConnectionInfos.user.buildingId !== null
+      store.getters.getConnectionInfos.user.id !== null 
     ) {
       this.$router.push("/feed");
     }
@@ -70,7 +69,8 @@ export default {
       },
       users: null,
       userToken: null,
-      statusCode: null
+      statusCode: null,
+      buildingId: null
     };
   },
   methods: {
@@ -87,11 +87,13 @@ export default {
               store.state.user.token = res.data.token;
               store.state.user.id = res.data.userId;
               store.state.user.buildingId = res.data.buildingId;
+              this.buildingId = res.data.buildingId;
+              setTimeout(() => {
+                this.goToFeed();
+              }, 500);
             })
             .catch(err => (this.statusCode = err.response.status));
-          setTimeout(() => {
-            this.goToFeed();
-          }, 500);
+          
         } else {
           this.$toasted.error("Le mot de passe ne peut pas être vide", {
             theme: "toasted-primary",
@@ -119,7 +121,7 @@ export default {
         });
       } else {
         console.log(store.state.user.buildingId);
-        if (store.state.user.buildingId !== null) {
+        if (store.state.user.buildingId === null) {
           this.$router.push("/find-room");
         } else {
           this.$router.push("/feed");
