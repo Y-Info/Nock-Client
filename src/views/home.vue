@@ -16,11 +16,12 @@
       </div>
       <div class="mt-8">
         <h2 class="uppercase text--yellow title">
-          Titre principal
+          Nock
         </h2>
         <p class="text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut ero labore et dolore.
+          Notre application permet de rejoindre une communauté proche de chez
+          vous. Vos voisins sont peut être déjà parmis nos utilisateurs,
+          <strong>rejoignez les vites !</strong>
         </p>
         <div class="button-container">
           <router-link
@@ -32,7 +33,7 @@
         </div>
         <div class="mt-20">
           <h2 class="uppercase text--yellow title">
-            Sous-titre
+            Rejoigner vos voisins où que vous soyez
           </h2>
           <Map
             :styleSize="styleMap"
@@ -40,16 +41,10 @@
             :center="[]"
             :hasMarker="false"
           />
-          <p class="text mt-20">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut ero labore et dolore.
-          </p>
         </div>
       </div>
     </div>
-    <div style="height:300px;margin-top:62px;" class="bg--yellow">
-      Footer
-    </div>
+    <div style="height:150px;margin-top:62px;" class="bg--yellow"></div>
   </div>
 </template>
 
