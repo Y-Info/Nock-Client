@@ -22,6 +22,7 @@
       <img class="search" src="../assets/icons/search.svg" alt="icon mail" />
       <input
         placeholder="Rechercher une adresse"
+        autocomplete="off"
         class="address text--yellow"
         type="text"
         name="address"
@@ -49,13 +50,21 @@
       </div>
       <p class="address-distance"></p>
     </div>
-    <div class="buttons-action fixed flex justify-between uppercase">
-      <router-link to="/create-room" v-if="!buildingFound">
+    <div class="buttons-action fixed  uppercase">
+      <div
+        v-if="
+          !buildingFound &&
+            !errorBuildingFound &&
+            address !== null &&
+            addresses.length === 1
+        "
+        v-on:click="actionRoom('create')"
+      >
         Créer un espace
-      </router-link>
-      <router-link to="/connect" v-if="buildingFound">
+      </div>
+      <div v-if="buildingFound" v-on:click="actionRoom('join')">
         Rejoindre un espace
-      </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -64,6 +73,8 @@
 import Map from "../components/Map";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 // import apirequest from "../utils/apirequest";
+import axios from "axios";
+import store from "../store/index";
 
 export default {
   components: {
@@ -79,14 +90,17 @@ export default {
       center: [],
       zoomMap: 5,
       markerMap: false,
-      buildingFound: false
+      buildingFound: false,
+      errorBuildingFound: false,
+      buildingID: null
     };
   },
   methods: {
     async getAdress() {
       const results = await this.provider.search({ query: this.address });
       this.addresses = results;
-      if (results.length != 0) {
+      this.buildingFound = false;
+      if (results.length !== 0) {
         this.center = [results[0].y, results[0].x];
         this.zoomMap = 18;
         this.markerMap = true;
@@ -95,18 +109,112 @@ export default {
         this.zoomMap = 5;
         this.markerMap = false;
       }
+      if (results.length === 1) {
+        this.checkRoomExist(results.label);
+      }
     },
     goToAdresse(adresse) {
       this.addresses = [adresse];
       this.center = [adresse.y, adresse.x];
       this.markerMap = true;
       this.zoomMap = 18;
+      this.checkRoomExist(adresse.label);
+    },
+    checkRoomExist(adresse) {
+      axios
+        .post("https://nock-nock.herokuapp.com/api/building/filter/address", {
+          address: adresse
+        })
+        .then(res => {
+          if (res.data.length !== 0) {
+            this.buildingID = res.data[0]._id;
+            this.buildingFound = true;
+          }
+        })
+        .catch(() => {
+          this.errorBuildingFound = true;
+          this.$toasted.error("Erreur lors de l'appelle pour recupérer les adresses : " + err, {
+            theme: "toasted-primary",
+            position: "top-right",
+            duration: 3000
+          });
+        });
+    },
+    actionRoom(action) {
+      console.log(store.getters.getConnectionInfos.user.id);
+      if (action === "join") {
+        this.joinRoom();
+      } else if (action === "create") {
+        this.createRoom();
+      }
+    },
+    joinRoom() {
+      //TODO: modification d'un building spécifique pour ajout de l'utilisateur courant
+      console.log(store.getters.getConnectionInfos.user.id);
+      if (store.getters.getConnectionInfos.user.id !== null) {
+        var config = {
+          headers: {
+            Authorization:
+              "Bearer " + store.getters.getConnectionInfos.user.token
+          }
+        };
+        axios
+          .put(
+            "https://nock-nock.herokuapp.com/api/building/addUser/" +
+              this.buildingID,
+            {
+              userId: store.getters.getConnectionInfos.user.id
+            },
+            config
+          )
+          .then(res => {
+            console.log(res);
+            this.$router.push("/feed"); 
+          })
+          .catch((err) => {
+            console.log(err);
+            this.$toasted.error("Erreur lors de l'ajout d'un user au building : " + err, {
+              theme: "toasted-primary",
+              position: "top-right",
+              duration: 3000
+            });
+          });
+      } else {
+        this.$router.push("/connect");
+      }
+    },
+    createRoom() {
+      axios
+        .post("https://nock-nock.herokuapp.com/api/building", {
+          address: this.addresses[0].label,
+          location: {
+            type: "Point",
+            coordinates: [this.addresses[0].x, this.addresses[0].y]
+          }
+        })
+        .then(res => {
+          if (res.length !== 0) {
+            if (store.getters.getConnectionInfos.user.id !== null) {
+              this.$router.push("/feed");
+            } else {
+              this.$router.push("/connect");
+            }
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          this.$toasted.error("Erreur lors de l'ajout d'un building en base de donnée : " + err, {
+            theme: "toasted-primary",
+            position: "top-right",
+            duration: 3000
+          });
+        });
     }
   },
   computed: {
     evenAdresses: function() {
       return this.addresses.filter(function(adresse, index) {
-        return index < 5;
+        return index < 4;
       });
     }
   }
@@ -114,6 +222,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  overflow: hidden;
+}
 .topbar {
   display: flex;
   justify-content: center;
@@ -140,7 +251,7 @@ export default {
   -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   input {
-    font-size: 1.5em;
+    font-size: 1em;
   }
 }
 .search {
@@ -184,7 +295,7 @@ export default {
   font-weight: bold;
   width: 80%;
   text-align: center;
-  a {
+  div {
     padding: 10px 20px;
     border-radius: 5px;
     margin: 0 5px;
@@ -192,11 +303,11 @@ export default {
     -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
     box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
   }
-  a:first-child {
+  div:first-child {
     background-color: white;
     color: $blue;
   }
-  a:nth-child(2) {
+  div:nth-child(2) {
     color: $white;
     background: $blue;
   }
