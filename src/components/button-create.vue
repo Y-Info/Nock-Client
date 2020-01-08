@@ -22,7 +22,7 @@ export default {
   justify-content: center;
   font-size: 10px;
   text-transform: uppercase;
-  margin-top: 100%;
+  margin-top: 20%;
 
   .buttonClick {
     display: block;

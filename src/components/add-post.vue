@@ -1,64 +1,27 @@
 <template>
   <div>
-    <h2>Création de votre post</h2>
-
-    <form id="connect" @submit="checkForm" action="/" method="post">
+    <form id="createSurvey" @submit="checkForm" action="/" method="post">
       <div class="field-wrap">
-        <label for="name"
-          ><img src="../assets/icons/connectPeople.svg" alt="icon people"
-        /></label>
-        <input class="name" type="text" name="name" id="name" v-model="name" />
+        <label for="question">Titre*</label>
+        <input class="titre" type="text" name="titre" id="titre" v-model="titre" />
       </div>
       <div class="field-wrap">
-        <label for="email"
-          ><img src="../assets/icons/mailIcon.svg" alt="icon mail"
-        /></label>
-        <input
-          class="email"
-          type="email"
-          name="email"
-          id="email"
-          v-model="email"
-          min="0"
-        />
+        <label for="question">Description*</label>
+        <textarea class="question" id="question" row="20" colus="15" v-model="question"></textarea>
       </div>
-      <div class="field-wrap">
-        <label for="password"
-          ><img src="../assets/icons/lock-icon.svg" alt="icon mail"
-        /></label>
-        <input
-          class="password"
-          type="password"
-          name="password"
-          id="password"
-          v-model="password"
-          min="0"
-        />
-      </div>
-      <div class="field-wrap">
-        <label for="confirmPassword"
-          ><img src="../assets/icons/lock-icon.svg" alt="icon mail"
-        /></label>
-        <input
-          class="password"
-          type="password"
-          name="password"
-          id="confirmPassword"
-          v-model="password"
-          min="0"
-        />
+      <div class="radioContainer">
+        <!--<div class="customRadio"></div>-->
+        <input class="checkbox" type="checkbox">
+        <p class="txtUrgent">URGENT</p>
       </div>
     </form>
-
-    <div class="button-container">
-      <router-link class="buttonClick buttonBefore" to="/validate-adress"
-        >Confirmation</router-link
-      >
-    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.button-container {
+  margin-top: 25vh!important;
+}
 h2 {
   margin-top: 70px;
   font-size: 14px;
@@ -66,29 +29,31 @@ h2 {
   color: #ffba00;
   margin-left: 20px;
 }
-.button-container {
+
+.checkbox{              /* A retirer */
+  display: inline-block;
+}
+
+.radioContainer{
+
+margin: auto;
+width: 90%;
+
+/*.customRadio{
+   border: #EFEFEF 2px solid;
+   border-radius: 100%;
+   margin-right: 15px;
+   width: 3vh;
+   height: 3vh;
+   display: inline-block;
+}*/
+
+.txtUrgent{
+  display: inline-block;
+  font-family: Montserrat B, sans-serif;
   font-weight: bold;
-  text-align: center;
-  margin-top: 70px;
-  font-size: 10px;
   text-transform: uppercase;
-
-  .buttonClick {
-    display: block;
-    margin: 20px 10px 10px 10px;
-    padding: 18px 40px;
-    border-radius: 5px;
-    text-decoration: none;
-
-    -webkit-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.5);
-  }
-
-  .buttonBefore {
-    background-color: #2e3460;
-    color: white;
-  }
+}
 }
 
 form {
@@ -113,25 +78,33 @@ form {
 
     input {
       margin: 0 auto;
-      border: none;
-      border-bottom: #2e3460 1px solid;
+      border: #EFEFEF 2px solid;
       width: 90%;
-      padding: 0 0 15px 45px;
+      padding: 0 0 20px 0px;
       font-size: 14px;
       font-family: Montserrat B, sans-serif;
-      color: #2e3460;
+      color: black;
+      margin-top: 4vh;
+    }
+
+    textarea {
+      margin: 0 auto;
+      border: #EFEFEF 2px solid;
+      width: 90%;
+      padding: 0 0 90px 0px;
+      font-size: 14px;
+      font-family: Montserrat B, sans-serif;
+      color: black;
+      margin-top: 4vh;
     }
 
     label {
       position: absolute;
-      transform: translateY(6px);
-      left: 20px;
-      top: -10px;
-      color: rgba($white, 0.5);
+      color: black;
+      font-weight: bold;
       transition: all 0.25s ease;
       -webkit-backface-visibility: hidden;
       pointer-events: none;
-      font-size: 22px;
     }
   }
 }
