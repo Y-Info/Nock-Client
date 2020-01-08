@@ -48,10 +48,16 @@
 <script>
 import menuConnect from "../components/menu-connect";
 import axios from "axios";
+import store from "../store/index";
 
 export default {
   components: {
     menuConnect
+  },
+  created() {
+    if (store.getters.getConnectionInfos.user.id !== null) {
+      this.$router.push("/feed");
+    }
   },
   data() {
     return {
@@ -73,7 +79,12 @@ export default {
               email: this.user.email,
               password: this.user.password
             })
-            .then(res => (this.userToken = res.data.token))
+            .then(res => {
+              this.userToken = res.data.token;
+              store.state.user.token = res.data.token;
+              store.state.user.id = res.data.userId;
+              store.state.user.buildingId = res.data.buildingId;
+            })
             .catch(err => (this.statusCode = err.response.status));
           setTimeout(() => {
             this.goToFeed();
