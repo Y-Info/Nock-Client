@@ -40,8 +40,14 @@
   </div>
 </template>
 <script>
+import store from "../store/index";
 export default {
   components: {},
+  created() {
+    if (store.getters.getConnectionInfos.user.id === null) {
+      this.$router.push("/connect");
+    }
+  },
   data() {
     return {
       menuAddPostOpen: false
@@ -49,7 +55,6 @@ export default {
   },
   methods: {
     goToAddPost() {
-      console.log("passe");
       this.$router.push("/add-post");
     },
     openCloseAddPostMenu() {

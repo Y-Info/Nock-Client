@@ -1,9 +1,9 @@
 <template>
   <div>
-    <menuRetourFeed route="/feed" :title="title" :txtButton="txtButton"/>
-    <Event v-if="statutAdd==STATUT_EVENT" />
-    <Post v-if="statutAdd==STATUT_POST" />
-    <Survey v-if="statutAdd==STATUT_SURVEY" />
+    <menuRetourFeed route="/feed" :title="title" :txtButton="txtButton" />
+    <Event v-if="statutAdd == STATUT_EVENT" />
+    <Post v-if="statutAdd == STATUT_POST" />
+    <Survey v-if="statutAdd == STATUT_SURVEY" />
     <menuBottom />
   </div>
 </template>

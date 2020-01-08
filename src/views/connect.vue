@@ -55,9 +55,7 @@ export default {
     menuConnect
   },
   created() {
-    if (
-      store.getters.getConnectionInfos.user.id !== null 
-    ) {
+    if (store.getters.getConnectionInfos.user.id !== null) {
       this.$router.push("/feed");
     }
   },
@@ -93,7 +91,6 @@ export default {
               }, 500);
             })
             .catch(err => (this.statusCode = err.response.status));
-          
         } else {
           this.$toasted.error("Le mot de passe ne peut pas être vide", {
             theme: "toasted-primary",
@@ -120,7 +117,6 @@ export default {
           duration: 3000
         });
       } else {
-        console.log(store.state.user.buildingId);
         if (store.state.user.buildingId === null) {
           this.$router.push("/find-room");
         } else {

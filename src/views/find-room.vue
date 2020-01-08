@@ -143,7 +143,6 @@ export default {
         });
     },
     actionRoom(action) {
-      console.log(store.getters.getConnectionInfos.user.id);
       if (action === "join") {
         this.joinRoom();
       } else if (action === "create") {
@@ -151,8 +150,6 @@ export default {
       }
     },
     joinRoom() {
-      //TODO: modification d'un building spécifique pour ajout de l'utilisateur courant
-      console.log(store.getters.getConnectionInfos.user.id);
       if (store.getters.getConnectionInfos.user.id !== null) {
         var config = {
           headers: {
@@ -170,10 +167,6 @@ export default {
             config
           )
           .then(res => {
-            console.log(res);
-            console.log(store.getters.getConnectionInfos.user.id);
-            console.log(store.getters.getConnectionInfos.user.buildingId);
-            console.log(store.getters.getConnectionInfos.user.token);
             if (res.length !== 0) {
               if (store.getters.getConnectionInfos.user.id !== null) {
                 this.$router.push("/feed");
@@ -183,7 +176,6 @@ export default {
             }
           })
           .catch(err => {
-            console.log(err);
             this.$toasted.error(
               "Erreur lors de l'ajout d'un user au building : " + err,
               {
@@ -216,7 +208,6 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err);
           this.$toasted.error(
             "Erreur lors de l'ajout d'un building en base de donnée : " + err,
             {

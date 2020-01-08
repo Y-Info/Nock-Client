@@ -1,17 +1,29 @@
 <template>
   <div>
-    <form id="createSurvey" @submit="createPost" action="/" method="post">
+    <form id="createSurvey" @submit.prevent="createPost" method="post">
       <div class="field-wrap">
         <label for="question">Titre*</label>
-        <input class="titre" type="text" name="title" id="title" v-model="post.title" />
+        <input
+          class="titre"
+          type="text"
+          name="title"
+          id="title"
+          v-model="post.title"
+        />
       </div>
       <div class="field-wrap">
         <label for="question">Description*</label>
-        <textarea class="desc" id="desc" row="20" colus="15" v-model="post.desc"></textarea>
+        <textarea
+          class="desc"
+          id="desc"
+          row="20"
+          colus="15"
+          v-model="post.desc"
+        ></textarea>
       </div>
       <div class="radioContainer">
         <!--<div class="customRadio"></div>-->
-        <input class="checkbox" type="checkbox" v-model="post.alert">
+        <input class="checkbox" type="checkbox" v-model="post.alert" />
         <p class="txtUrgent">URGENT</p>
       </div>
       <div>
@@ -19,7 +31,7 @@
           <router-link class="buttonClick buttonBefore" to="/feed">Créer la publication</router-link>
         </div>-->
         <button type="submit" class="button-container">
-          <router-link class="buttonClick buttonBefore" to="/feed">Créer la publication</router-link>
+          <div class="buttonClick buttonBefore">Créer la publication</div>
         </button>
       </div>
     </form>
@@ -45,23 +57,35 @@ export default {
   },
   methods: {
     createPost() {
-      const config ={
-        headers:{
+      const config = {
+        headers: {
           Authorizations:
-          "Bearer " + store.getters.getConnectionInfos.user.token
+            "Bearer " + store.getters.getConnectionInfos.user.token
         }
       };
       axios
-            .post("https://nock-nock.herokuapp.com/api/post", {
-              title: this.post.title,
-              desc: this.post.desc,
-              alert: this.post.alert,
-              //buildingID: store.getters.getConnectionInfos.user.buildingID,
-              //author: store.getters.getConnectionInfos.user.author
-              buildingID: "5e143ca24e5f721e74b1aaa2",
-              userId: "5e15a34dce292300178815ab"
-            }, config)
-    },
+        .post(
+          "https://nock-nock.herokuapp.com/api/post",
+          {
+            title: this.post.title,
+            desc: this.post.desc,
+            alert: this.post.alert,
+            buildingId: store.getters.getConnectionInfos.user.buildingID,
+            userId: store.getters.getConnectionInfos.user.userId
+          },
+          config
+        )
+        .then(() => {
+          this.$router.push("/feed");
+        })
+        .catch(err => {
+          this.$toasted.error("Erreur : " + err, {
+            theme: "toasted-primary",
+            position: "top-right",
+            duration: 3000
+          });
+        });
+    }
   }
 };
 </script>
