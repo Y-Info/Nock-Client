@@ -4,7 +4,7 @@
 
     <h2>Création du compte</h2>
 
-    <form id="connect" @submit.prevent="sendForm">
+    <form id="connect" @submit.prevent="sendForm" method="post">
       <div class="field-wrap">
         <label for="firstname"
           ><img src="../assets/icons/connectPeople.svg" alt="icon people"
@@ -12,8 +12,8 @@
         <input
           class="name"
           type="text"
-          name="name"
-          id="name"
+          name="firstName"
+          id="firstName"
           v-model="user.firstName"
           placeholder="John"
         />
@@ -25,8 +25,8 @@
         <input
           class="name"
           type="text"
-          name="lastname"
-          id="lastname"
+          name="lastName"
+          id="lastName"
           v-model="user.lastName"
           placeholder="Doe"
         />
@@ -66,8 +66,8 @@
         <input
           class="password"
           type="password"
-          name="confirmPassword"
-          id="confirmPassword"
+          name="verifPassword"
+          id="verifPassword"
           v-model="user.verifPassword"
           min="0"
           placeholder="*********"
