@@ -98,7 +98,7 @@ export default {
     };
     axios
       .get(
-        `https://nock-nock.herokuapp.com/api/building/infos/${store.getters.getUserInfo.user.buildingId}`,
+        `https://nock-nock.herokuapp.com/api/building/infos/${store.getters.getUserInfo.user.buildingId}/filter/post`,
         {
           config
         }

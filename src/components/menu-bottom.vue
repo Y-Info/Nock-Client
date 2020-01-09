@@ -75,6 +75,7 @@ export default {
   padding: 20px;
   background-color: #2e3460;
   width: 100%;
+  max-width: 425px;
 
   .addPost {
     background-color: white;
