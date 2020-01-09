@@ -116,10 +116,10 @@ export default {
           duration: 3000
         });
       } else {
-        if (store.state.user.buildingId === null) {
-          this.$router.push("/find-room");
-        } else {
+        if (store.state.user.buildingId !== null) {
           this.$router.push("/feed");
+        } else {
+          this.$router.push("/find-room");
         }
       }
     }

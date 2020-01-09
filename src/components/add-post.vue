@@ -48,7 +48,7 @@ export default {
       post: {
         title: "",
         desc: "",
-        alert
+        alert: false
       },
       users: null,
       userToken: null,
@@ -57,22 +57,24 @@ export default {
   },
   methods: {
     createPost() {
-      const config = {
+      let config = {
         headers: {
-          Authorizations:
-            "Bearer " + store.getters.getConnectionInfos.user.token
+          'Authorization':
+            "bearer " + store.getters.getConnectionInfos.user.token
         }
+      };
+      let objetEnvoye = {
+        title: this.post.title,
+        description: this.post.desc,
+        type: 'post',
+        alert: this.post.alert,
+        buildingId: store.getters.getConnectionInfos.user.buildingId,
+        author: store.getters.getConnectionInfos.user.id
       };
       axios
         .post(
           "https://nock-nock.herokuapp.com/api/post",
-          {
-            title: this.post.title,
-            desc: this.post.desc,
-            alert: this.post.alert,
-            buildingId: store.getters.getConnectionInfos.user.buildingID,
-            userId: store.getters.getConnectionInfos.user.userId
-          },
+          objetEnvoye,
           config
         )
         .then(() => {
