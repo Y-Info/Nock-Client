@@ -72,7 +72,6 @@
 <script>
 import Map from "../components/Map";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
-// import apirequest from "../utils/apirequest";
 import axios from "axios";
 import store from "../store/index";
 
@@ -144,7 +143,6 @@ export default {
         });
     },
     actionRoom(action) {
-      console.log(store.getters.getConnectionInfos.user.id);
       if (action === "join") {
         this.joinRoom();
       } else if (action === "create") {
@@ -152,8 +150,6 @@ export default {
       }
     },
     joinRoom() {
-      //TODO: modification d'un building spécifique pour ajout de l'utilisateur courant
-      console.log(store.getters.getConnectionInfos.user.id);
       if (store.getters.getConnectionInfos.user.id !== null) {
         var config = {
           headers: {
@@ -171,11 +167,15 @@ export default {
             config
           )
           .then(res => {
-            console.log(res);
-            this.$router.push("/feed");
+            if (res.length !== 0) {
+              if (store.getters.getConnectionInfos.user.id !== null) {
+                this.$router.push("/feed");
+              } else {
+                this.$router.push("/connect");
+              }
+            }
           })
           .catch(err => {
-            console.log(err);
             this.$toasted.error(
               "Erreur lors de l'ajout d'un user au building : " + err,
               {
@@ -208,7 +208,6 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err);
           this.$toasted.error(
             "Erreur lors de l'ajout d'un building en base de donnée : " + err,
             {

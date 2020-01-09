@@ -4,53 +4,26 @@
       <menuRight />
       <menu-bottom />
       <div class="content">
-        <h3>Titre du l'infos</h3>
+        <h3>Fiche de l'immeuble</h3>
         <img src="../assets/img/trash.jpg" alt="photo poubelle" />
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet
-          debitis eum odit quisquam quod sint, vel veniam. Assumenda deserunt
-          eius est, exercitationem facilis ipsa nihil quasi soluta vero
-          voluptatum?
+          Description de l'immeuble : Notre immeuble a été construit dans les
+          années 1910 et comporte 4 étage. Le local à poubelle se trouve au rez
+          de chaussez et vous pouvez trouver des trappes pour envoyé directement
+          vos dechets au rez de chaussée.
         </p>
+        <ul style="font-size: 0.8em">
+          <li>Nombres d'étage : 4</li>
+          <li>Emplacement local à poubelle : rez de chaussée</li>
+          <li>Estimation nombre d'habitants : 40</li>
+          <li>
+            Document à imprimer : <br />
+            <a href="http://www.google.com" target="_blank" style="color: red"
+              >Fiche immeuble</a
+            >
+          </li>
+        </ul>
       </div>
-      <div class="content">
-        <h3>Titre du l'infos</h3>
-        <img src="../assets/img/trash.jpg" alt="photo poubelle" />
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet
-          debitis eum odit quisquam quod sint, vel veniam. Assumenda deserunt
-          eius est, exercitationem facilis ipsa nihil quasi soluta vero
-          voluptatum?
-        </p>
-      </div>
-      <div class="content">
-        <h3>Titre du l'infos</h3>
-        <img src="../assets/img/trash.jpg" alt="photo poubelle" />
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet
-          debitis eum odit quisquam quod sint, vel veniam. Assumenda deserunt
-          eius est, exercitationem facilis ipsa nihil quasi soluta vero
-          voluptatum?
-        </p>
-      </div>
-    </div>
-    <div class="content">
-      <h3>Titre du l'infos</h3>
-      <img src="../assets/img/trash.jpg" alt="photo poubelle" />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet
-        debitis eum odit quisquam quod sint, vel veniam. Assumenda deserunt eius
-        est, exercitationem facilis ipsa nihil quasi soluta vero voluptatum?
-      </p>
-    </div>
-    <div class="content">
-      <h3>Titre du l'infos</h3>
-      <img src="../assets/img/trash.jpg" alt="photo poubelle" />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet
-        debitis eum odit quisquam quod sint, vel veniam. Assumenda deserunt eius
-        est, exercitationem facilis ipsa nihil quasi soluta vero voluptatum?
-      </p>
     </div>
   </div>
 </template>

@@ -1,8 +1,7 @@
 <template>
   <div>
     <menu-connect route="/" />
-    {{ users }}
-    <h2>Connection</h2>
+    <h2>Connexion</h2>
     <form id="connect" @submit.prevent="checkForm" method="post">
       <div class="field-wrap">
         <label for="email"
@@ -67,7 +66,8 @@ export default {
       },
       users: null,
       userToken: null,
-      statusCode: null
+      statusCode: null,
+      buildingId: null
     };
   },
   methods: {
@@ -84,11 +84,12 @@ export default {
               store.state.user.token = res.data.token;
               store.state.user.id = res.data.userId;
               store.state.user.buildingId = res.data.buildingId;
+              this.buildingId = res.data.buildingId;
+              setTimeout(() => {
+                this.goToFeed();
+              }, 500);
             })
             .catch(err => (this.statusCode = err.response.status));
-          setTimeout(() => {
-            this.goToFeed();
-          }, 500);
         } else {
           this.$toasted.error("Le mot de passe ne peut pas être vide", {
             theme: "toasted-primary",
@@ -115,7 +116,11 @@ export default {
           duration: 3000
         });
       } else {
-        this.$router.push("/feed");
+        if (store.state.user.buildingId === null) {
+          this.$router.push("/find-room");
+        } else {
+          this.$router.push("/feed");
+        }
       }
     }
   }
@@ -189,7 +194,7 @@ form {
       top: -10px;
       color: rgba($white, 0.5);
       transition: all 0.25s ease;
-      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
       pointer-events: none;
       font-size: 22px;
     }

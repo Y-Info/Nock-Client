@@ -23,6 +23,9 @@ export default new Vuex.Store({
   getters: {
     getConnectionInfos: state => {
       return { user: state.user };
+    },
+    getUserInfo: state => {
+      return { user: state.user };
     }
   },
   actions: {},

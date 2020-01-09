@@ -1,30 +1,32 @@
 <template>
   <div>
-    <menuRight />
-    <menu-bottom />
-    <div class="content">
-      <div class="marge">
-        <div class="userPost">
-          <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
-          <p class="name">Nom <br />Prénom</p>
-          <p class="time">Il y a 1h</p>
-        </div>
-        <h3>Titre du post</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
-        <img
-          class="imagePost"
-          src="../assets/img/imgAlert.png"
-          alt="Image post Alert"
-        />
-        <div class="actionPost">
-          <div class="comment">
-            <img src="../assets/icons/comment.svg" alt="Icon commentaire" />
-            <span class="numberComment">214</span>
+    <div>
+      <menuRight />
+      <menu-bottom />
+      <div class="content">
+        <div class="marge">
+          <div class="userPost">
+            <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
+            <p class="name">Nom <br />Prénom</p>
+            <p class="time">Il y a 1h</p>
+          </div>
+          <h3>Titre du post</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </p>
+          <img
+            class="imagePost"
+            src="../assets/img/imgAlert.png"
+            alt="Image post Alert"
+          />
+          <div class="actionPost">
+            <div class="comment">
+              <img src="../assets/icons/comment.svg" alt="Icon commentaire" />
+              <span class="numberComment">214</span>
+            </div>
           </div>
         </div>
       </div>
