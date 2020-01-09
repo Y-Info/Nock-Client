@@ -153,8 +153,8 @@ export default {
       if (store.getters.getConnectionInfos.user.id !== null) {
         var config = {
           headers: {
-            Authorization:
-              "Bearer " + store.getters.getConnectionInfos.user.token
+            'Authorization':
+              "bearer " + store.getters.getConnectionInfos.user.token
           }
         };
         axios
@@ -296,6 +296,7 @@ export default {
     margin-top: -8px;
   }
 }
+
 
 .buttons-action {
   bottom: 25px;
