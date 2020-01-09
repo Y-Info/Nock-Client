@@ -1,8 +1,7 @@
 <template>
   <div>
     <menu-connect route="/" />
-    {{ users }}
-    <h2>Connection</h2>
+    <h2>Connexion</h2>
     <form id="connect" @submit.prevent="checkForm" method="post">
       <div class="field-wrap">
         <label for="email"
