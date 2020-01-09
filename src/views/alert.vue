@@ -33,15 +33,43 @@
     </div>
   </div>
 </template>
-
 <script>
 import menuBottom from "../components/menu-bottom";
 import menuRight from "../components/menu-right";
+import axios from "axios";
+import store from "../store/index";
 
 export default {
   components: {
     menuBottom,
     menuRight
+  },
+  data() {
+    return {
+      isAdmin: store.getters.getUserInfo.user.isAdmin,
+      buildingPosts: [],
+      building: {
+        name: "Ynov le S"
+      }
+    };
+  },
+  created() {
+    const config = {
+      headers: {
+        Authorizations: "Bearer" + store.getters.getUserInfo.user.token
+      }
+    };
+    axios
+      .get(
+        `https://nock-nock.herokuapp.com/api/building/infos/${store.getters.getUserInfo.user.buildingId}/filter/alert`,
+        {
+          config
+        }
+      )
+      .then(allPosts => {
+        console.log(allPosts);
+        (this.buildingPosts = allPosts.data.feed.posts);
+      });
   }
 };
 </script>
