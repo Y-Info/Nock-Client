@@ -3,41 +3,54 @@
     <div>
       <menuRight />
       <menu-bottom />
-      <div class="content">
-        <h3>Fiche de l'immeuble</h3>
+      <div v-for="post in buildingPosts" :key="post._id" class="content">
+        <h3>{{ post.title }}</h3>
         <img src="../assets/img/trash.jpg" alt="photo poubelle" />
-        <p>
-          Description de l'immeuble : Notre immeuble a été construit dans les
-          années 1910 et comporte 4 étage. Le local à poubelle se trouve au rez
-          de chaussez et vous pouvez trouver des trappes pour envoyé directement
-          vos dechets au rez de chaussée.
+        <p v-html="post.description">
+          {{ post.description }}
         </p>
-        <ul style="font-size: 0.8em">
-          <li>Nombres d'étage : 4</li>
-          <li>Emplacement local à poubelle : rez de chaussée</li>
-          <li>Estimation nombre d'habitants : 40</li>
-          <li>
-            Document à imprimer : <br />
-            <a href="http://www.google.com" target="_blank" style="color: red"
-              >Fiche immeuble</a
-            >
-          </li>
-        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import menuBottom from "../components/menu-bottom";
-import menuRight from "../components/menu-right";
 
-export default {
-  components: {
-    menuBottom,
-    menuRight
-  }
-};
+  import menuBottom from "../components/menu-bottom";
+  import menuRight from "../components/menu-right";
+  import axios from "axios";
+  import store from "../store/index";
+
+  export default {
+    components: {
+      menuBottom,
+      menuRight
+    },
+    data() {
+      return {
+        isAdmin: store.getters.getUserInfo.user.isAdmin,
+        buildingPosts: [],
+        building: {
+          name: "Ynov le S"
+        }
+      };
+    },
+    created() {
+      const config = {
+        headers: {
+          Authorizations: "Bearer" + store.getters.getUserInfo.user.token
+        }
+      };
+      axios
+              .get(
+                      `https://nock-nock.herokuapp.com/api/building/infos/${store.getters.getUserInfo.user.buildingId}/filter/fiche`,
+                      {
+                        config
+                      }
+              )
+              .then(allPosts => (this.buildingPosts = allPosts.data.feed.posts));
+    }
+  };
 </script>
 
 <style lang="scss" scoped>
