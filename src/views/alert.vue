@@ -4,12 +4,13 @@
       <menuRight />
       <menu-bottom />
 
-
       <div v-for="post in buildingPosts" :key="post._id" class="content">
         <div class="marge">
           <div class="userPost">
             <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
-            <p class="name">{{ post.author.lastName }} <br />{{ post.author.firstName }}</p>
+            <p class="name">
+              {{ post.author.lastName }} <br />{{ post.author.firstName }}
+            </p>
             <p class="time">{{ post.creationDate }}</p>
           </div>
           <h3>{{ post.title }}</h3>
@@ -24,31 +25,31 @@
           <div class="actionPost">
             <div class="comment">
               <img
-                      src="../assets/icons/comment.svg"
-                      id="button"
-                      alt="Icon commentaire"
+                src="../assets/icons/comment.svg"
+                id="button"
+                alt="Icon commentaire"
               />
               <span class="numberComment">{{ post.comments.length }}</span>
             </div>
             <img
-                    v-if="isAdmin === true"
-                    class="delete"
-                    src="../assets/icons/delete.svg"
-                    alt="Icon suppression"
-                    @click="deletePost(post._id)"
+              v-if="isAdmin === true"
+              class="delete"
+              src="../assets/icons/delete.svg"
+              alt="Icon suppression"
+              @click="deletePost(post._id)"
             />
           </div>
           <div>
             <div
-                    class="commentUser"
-                    v-for="comment in post.comments"
-                    :key="comment._id"
+              class="commentUser"
+              v-for="comment in post.comments"
+              :key="comment._id"
             >
               <div class="userPost">
                 <img src="../assets/img/profilUser.svg" alt="Photo de profil" />
                 <p class="name">
                   {{ comment.author.lastName }} <br />{{
-                  comment.author.firstName
+                    comment.author.firstName
                   }}
                 </p>
               </div>
@@ -57,19 +58,17 @@
               </p>
               <div class="actionPost">
                 <img
-                        v-if="isAdmin === true"
-                        class="delete"
-                        src="../assets/icons/delete.svg"
-                        alt="Icon suppression"
-                        @click="deleteComment(comment._id)"
+                  v-if="isAdmin === true"
+                  class="delete"
+                  src="../assets/icons/delete.svg"
+                  alt="Icon suppression"
+                  @click="deleteComment(comment._id)"
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
 </template>
@@ -106,10 +105,7 @@ export default {
           config
         }
       )
-      .then(allPosts => {
-        console.log(allPosts);
-        (this.buildingPosts = allPosts.data.feed.posts);
-      });
+      .then(allPosts => (this.buildingPosts = allPosts.data.feed.posts));
   }
 };
 </script>
