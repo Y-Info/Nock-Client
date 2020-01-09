@@ -43,4 +43,9 @@ h2 {
   top: 40px;
   left: 20px;
 }
+@media (min-width: 480px) {
+  .arrow{
+    left: calc(50% - 192px);
+  }
+}
 </style>

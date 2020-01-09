@@ -28,4 +28,10 @@ h2 {
   right: 30px;
   top: 30px;
 }
+
+  @media (min-width : 480px) {
+    .menuRight{
+      right: calc(50% - 182px);
+    }
+  }
 </style>
