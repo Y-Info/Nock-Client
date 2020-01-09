@@ -103,11 +103,7 @@ export default {
           config
         }
       )
-      .then(
-        allPosts => (
-          console.log(allPosts), (this.buildingPosts = allPosts.data.feed.posts)
-        )
-      );
+      .then(allPosts => (this.buildingPosts = allPosts.data.feed.posts));
   },
   methods: {
     deletePost(postId) {
