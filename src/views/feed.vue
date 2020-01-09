@@ -112,9 +112,12 @@ export default {
           Authorizations: "Bearer" + store.getters.getUserInfo.user.token
         }
       };
-      axios.delete(`https://nock-nock.herokuapp.com/api/post${postId}`, {
-        config
-      });
+      axios.delete(
+        `https://nock-nock.herokuapp.com/api/post${postId}/filter/post`,
+        {
+          config
+        }
+      );
       this.$toasted.show("Publication supprimée", {
         theme: "toasted-success",
         position: "top-right",
