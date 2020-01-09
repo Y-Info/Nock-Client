@@ -59,24 +59,19 @@ export default {
     createPost() {
       let config = {
         headers: {
-          'Authorization':
-            "bearer " + store.getters.getConnectionInfos.user.token
+          Authorization: "bearer " + store.getters.getConnectionInfos.user.token
         }
       };
       let objetEnvoye = {
         title: this.post.title,
         description: this.post.desc,
-        type: 'post',
+        type: "post",
         alert: this.post.alert,
         buildingId: store.getters.getConnectionInfos.user.buildingId,
         author: store.getters.getConnectionInfos.user.id
       };
       axios
-        .post(
-          "https://nock-nock.herokuapp.com/api/post",
-          objetEnvoye,
-          config
-        )
+        .post("https://nock-nock.herokuapp.com/api/post", objetEnvoye, config)
         .then(() => {
           this.$router.push("/feed");
         })

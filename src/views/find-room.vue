@@ -153,7 +153,7 @@ export default {
       if (store.getters.getConnectionInfos.user.id !== null) {
         var config = {
           headers: {
-            'Authorization':
+            Authorization:
               "bearer " + store.getters.getConnectionInfos.user.token
           }
         };
@@ -296,7 +296,6 @@ export default {
     margin-top: -8px;
   }
 }
-
 
 .buttons-action {
   bottom: 25px;
