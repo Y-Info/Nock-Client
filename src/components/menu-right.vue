@@ -29,9 +29,9 @@ h2 {
   top: 30px;
 }
 
-  @media (min-width : 480px) {
-    .menuRight{
-      right: calc(50% - 182px);
-    }
+@media (min-width: 480px) {
+  .menuRight {
+    right: calc(50% - 182px);
   }
+}
 </style>
